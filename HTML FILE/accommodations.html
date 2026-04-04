@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/webp" href="../images/ORR-LOGO.webp">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        html { background: #000; }
+        body { background: #000; }
+    </style>
+    <script>
+        document.documentElement.classList.add('page-shell-loading');
+    </script>
+    <title>Accommodations - ORR Beach Resort</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../CSS FILE/page-transition.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        golden: '#F4C542',
+                        sunset: '#F28C28',
+                        deepOrange: '#E96A1A',
+                        oceanBlue: '#2E8BC0',
+                        skyBlue: '#DFF4FF',
+                        sandBeige: '#F7E7CE',
+                        charcoal: '#333333',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Accommodations-specific styles moved to inside #page-content for AJAX navigation support -->
+</head>
+<body class="font-sans text-charcoal bg-black antialiased overflow-x-hidden">
+    <div class="page-shell" data-page-shell aria-hidden="true">
+        <div class="page-shell__card">
+            <div class="page-shell__brand">
+                <div class="page-shell__logo"></div>
+                <div class="page-shell__brand-copy">
+                    <div class="page-shell__line page-shell__line--title"></div>
+                    <div class="page-shell__line page-shell__line--subtitle"></div>
+                </div>
+            </div>
+            <div class="page-shell__hero">
+                <div class="page-shell__line page-shell__line--hero-lg"></div>
+                <div class="page-shell__line page-shell__line--hero-md"></div>
+                <div class="page-shell__line page-shell__line--hero-sm"></div>
+            </div>
+            <div class="page-shell__grid">
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="home.html" class="flex items-center gap-3 shrink-0">
+                    <img src="../images/ORR-LOGO.webp" alt="ORR Beach Resort Logo" class="h-10 sm:h-12 w-auto object-contain">
+                    <div>
+                        <div class="font-heading font-bold text-[15px] sm:text-xl text-oceanBlue leading-tight">ORR Beach Resort</div>
+                        <div class="text-[8px] sm:text-[10px] text-sunset tracking-wider uppercase font-medium mt-0.5">Banawon, Hamtic, Antique</div>
+                    </div>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden xl:flex items-center space-x-6">
+                    <a href="home.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Home</a>
+                    <a href="about.html" class="text-charcoal hover:text-sunset font-medium transition-colors">About</a>
+                    <a href="accommodations.html" class="text-sunset font-medium transition-colors border-b-2 border-sunset pb-1">Accommodations</a>
+                    <a href="dining.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Dining</a>
+                    <a href="amenities.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Amenities</a>
+                    <a href="gallery.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Gallery</a>
+                    <a href="contact.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Contact</a>
+                    <a href="booking.html" class="bg-sunset hover:bg-deepOrange text-white px-6 py-2.5 rounded-full font-semibold transition-colors shadow-sm">Book Now</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="xl:hidden flex items-center">
+                    <button class="text-charcoal hover:text-sunset focus:outline-none mobile-menu-btn">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navbar ends -->
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] shadow-2xl border-l border-gray-100 bg-white z-[60] flex flex-col pt-16 px-6 pb-8 transform translate-x-full transition-transform duration-500 ease-in-out xl:hidden">
+        <button id="close-menu-btn" class="absolute top-4 right-4 text-charcoal hover:text-sunset p-2 focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="flex flex-col space-y-5 text-xl font-heading font-semibold text-center mt-4">
+            <a href="home.html" class="hover:text-sunset transition-colors">Home</a>
+            <a href="about.html" class="hover:text-sunset transition-colors">About</a>
+            <a href="accommodations.html" class="text-sunset transition-colors">Accommodations</a>
+            <a href="dining.html" class="hover:text-sunset transition-colors">Dining</a>
+            <a href="amenities.html" class="hover:text-sunset transition-colors">Amenities</a>
+            <a href="gallery.html" class="hover:text-sunset transition-colors">Gallery</a>
+            <a href="contact.html" class="hover:text-sunset transition-colors">Contact</a>
+        </div>
+        <div class="mt-auto flex flex-col items-center">
+            <a href="booking.html" class="bg-sunset hover:bg-deepOrange text-white px-6 py-3 rounded-full font-bold text-lg w-full text-center transition-all shadow-lg mb-6">Book Now</a>
+            <div class="flex gap-4 justify-center text-xl">
+                <a href="#" class="w-10 h-10 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="text-[10px] text-gray-400 mt-6 capitalize">&copy; 2026 ORR Beach Resort. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- Main Content for Page Transitions -->
+    <main id="page-content" class="page-content transition-content">
+
+        <style>
+            .hero-overlay {
+                background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.6) 50%, rgba(15, 23, 42, 0.1) 100%),
+                            linear-gradient(0deg, rgba(15, 23, 42, 0.4) 0%, transparent 40%);
+            }
+
+            @media (max-width: 768px) {
+                .hero-overlay {
+                    background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.8) 50%, rgba(15, 23, 42, 0.95) 100%);
+                }
+            }
+
+            #bg-image {
+                transition: background-image 0.8s ease-in-out, opacity 0.5s ease-in-out;
+            }
+
+            .carousel-track {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                padding-right: 12px;
+                padding-left: 12px;
+            }
+            .thumb-card {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                padding: 10px;
+                border-radius: 16px;
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                cursor: pointer;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                opacity: 0.7;
+            }
+            .thumb-card:hover {
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.15);
+                transform: translateX(-6px);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+            .thumb-card.active-thumb {
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.25);
+                border-color: #F4C542;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #F4C542;
+                transform: translateX(-12px);
+            }
+            .thumb-img-wrapper {
+                width: 85px;
+                height: 65px;
+                border-radius: 10px;
+                overflow: hidden;
+                flex-shrink: 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            }
+            .thumb-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s ease;
+            }
+            .thumb-card:hover .thumb-img {
+                transform: scale(1.15);
+            }
+            .thumb-text {
+                display: flex;
+                flex-direction: column;
+            }
+            .thumb-title {
+                color: white;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 0.95rem;
+                line-height: 1.3;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            }
+            .thumb-subtitle {
+                color: #DFF4FF;
+                font-size: 0.75rem;
+                margin-top: 4px;
+                font-weight: 500;
+            }
+
+            .carousel-viewport {
+                height: 70vh;
+                max-height: 600px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(255,255,255,0.2) transparent;
+                padding-block: 20px;
+                mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+                -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            }
+            .carousel-viewport::-webkit-scrollbar {
+                width: 4px;
+            }
+            .carousel-viewport::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            .carousel-viewport::-webkit-scrollbar-thumb {
+                background-color: rgba(255,255,255,0.2);
+                border-radius: 4px;
+            }
+
+            .content-fade {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+            .content-fade.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .hide-scrollbar {
+                scrollbar-width: none;
+            }
+        </style>
+
+        <!-- Animated Slider Layout -->
+        <div class="relative w-full h-screen min-h-[600px] flex items-center overflow-hidden bg-black pt-10 md:pt-20">
+            
+            <!-- Dynamic Background -->
+            <div id="bg-image" class="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-out scale-105"></div>
+
+            <!-- Dark Overlay for Readability -->
+            <div class="absolute inset-0 hero-overlay z-0"></div>
+
+            <!-- Content Area -->
+            <div class="relative z-10 w-full px-6 md:px-12 lg:px-24 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 lg:gap-16 mt-10 md:mt-0">
+
+                <!-- Left Text Section -->
+                <div class="w-full md:w-1/2 lg:w-7/12 text-left pb-24 md:pb-0">
+                    <div id="content-group" class="content-fade visible">
+                        <div class="flex items-center gap-4 mb-5">
+                            <span class="w-12 h-[2px] bg-golden shadow-[0_0_10px_rgba(244,197,66,0.5)]"></span>
+                            <span class="text-golden font-semibold tracking-[0.2em] uppercase text-xs md:text-sm shadow-black drop-shadow-md">Accommodations</span>
+                        </div>
+                        
+                        <h1 id="slide-title" class="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] drop-shadow-lg mb-3">
+                            Standard Queen Room
+                        </h1>
+                        
+                        <div class="mb-6 flex items-baseline gap-2">
+                            <span id="slide-price" class="text-2xl md:text-3xl font-bold text-golden drop-shadow-md">₱1,500</span>
+                            <span id="slide-price-unit" class="text-sm md:text-base text-white/80 font-normal tracking-wide">/ night</span>
+                        </div>
+                        
+                        <p id="slide-desc" class="text-base md:text-lg text-white/90 leading-relaxed drop-shadow-md mb-10 font-light max-w-xl">
+                            A comfortable and spacious room featuring a plush queen-sized bed. Perfect for couples seeking a romantic and restful getaway by the sea, equipped with modern amenities to make your stay unforgettable.
+                        </p>
+                        
+                        <div class="flex flex-wrap items-center gap-4">
+                            <a href="booking.html" class="px-8 py-4 rounded-full bg-sunset text-white text-sm md:text-base font-semibold tracking-wide hover:bg-deepOrange hover:shadow-[0_8px_25px_rgba(242,140,40,0.4)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 w-max">
+                                <span>Book Room</span>
+                                <i class="fas fa-arrow-right text-sm"></i>
+                            </a>
+                            <a href="contact.html" class="px-8 py-4 rounded-full bg-white/5 backdrop-blur-md border border-white/20 text-white text-sm md:text-base font-semibold tracking-wide hover:bg-white/15 hover:border-white/40 hover:-translate-y-1 transition-all duration-300 w-max">
+                                Inquire Rates
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Image Carousel (Desktop) -->
+                <div class="w-full md:w-1/2 lg:w-4/12 hidden md:block relative">
+                    <div class="carousel-viewport">
+                        <div id="carousel-track" class="carousel-track">
+                            <!-- Thumbnails injected by JS -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Mobile Image Carousel (Horizontal scroll) -->
+            <div class="absolute bottom-6 left-0 w-full z-20 md:hidden">
+                 <div class="flex overflow-x-auto gap-4 px-6 pb-2 snap-x snap-mandatory hide-scrollbar" id="mobile-carousel-track">
+                     <!-- Injected by JS -->
+                 </div>
+            </div>
+
+        </div>
+
+    <!-- Slider Animation Script -->
+    <script>
+    (() => {
+        const slidesData = [
+            {
+                title: "Standard Queen Room",
+                desc: "A comfortable and spacious room featuring a plush queen-sized bed. Perfect for couples seeking a romantic and restful getaway by the sea, equipped with modern amenities to make your stay unforgettable.",
+                bg: "../images/standard-queen-room.webp",
+                thumb: "../images/standard-queen-room.webp",
+                capacity: "2 Guests",
+                price: "₱1,500",
+                unit: "/ night"
+            },
+            {
+                title: "Standard Twin Room",
+                desc: "Ideal for friends or family members traveling together. Features two comfortable twin beds and modern amenities to ensure a relaxing and convenient stay after a long day of beach activities.",
+                bg: "../images/standard-twin-room.webp",
+                thumb: "../images/standard-twin-room.webp",
+                capacity: "2 Guests",
+                price: "₱1,200",
+                unit: "/ night"
+            },
+            {
+                title: "Family Suite Room",
+                desc: "Designed for larger groups and families looking for the ultimate comfort. Features vibrant ambient lighting, premium bedding, and plenty of space to relax and bond together during your vacation.",
+                bg: "../images/blue-lit-family-room.webp",
+                thumb: "../images/blue-lit-family-room.webp",
+                capacity: "4-6 Guests",
+                price: "₱2,800",
+                unit: "/ night"
+            },
+            {
+                title: "Beachside Day Cabanas",
+                desc: "Experience the sea breeze in our colorful day cabanas, located just steps away from the main pool and the pristine beach. The perfect spot to lounge, read a book, or enjoy sunset drinks.",
+                bg: "../images/yellow-cabana-row-daytime.webp",
+                thumb: "../images/yellow-cabana-row-daytime.webp",
+                capacity: "Up to 8 Guests",
+                price: "₱500",
+                unit: "/ day"
+            },
+            {
+                title: "Night Cabanas",
+                desc: "As the sun sets, our poolside cabanas transform into a beautiful, illuminated oasis. Enjoy a serene evening atmosphere with perfectly ambient lighting reflecting off the calm waters of the lap pool.",
+                bg: "../images/poolside-cabanas-at-night.webp",
+                thumb: "../images/poolside-cabanas-at-night.webp",
+                capacity: "Up to 8 Guests",
+                price: "₱800",
+                unit: "/ night"
+            }
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        window.autoPlayInterval = undefined;
+
+        function buildCarousel() {
+            const track = document.getElementById('carousel-track');
+            const mobileTrack = document.getElementById('mobile-carousel-track');
+            if (track) track.innerHTML = '';
+            if (mobileTrack) mobileTrack.innerHTML = '';
+
+            slidesData.forEach((slide, i) => {
+                // Desktop Card
+                if (track) {
+                    const card = document.createElement('div');
+                    card.className = 'thumb-card' + (i === currentIndex ? ' active-thumb' : '');
+                    card.onclick = () => window.goToSlide(i);
+
+                    const imgWrapper = document.createElement('div');
+                    imgWrapper.className = 'thumb-img-wrapper';
+                    
+                    const img = document.createElement('img');
+                    img.src = slide.thumb;
+                    img.alt = slide.title;
+                    img.className = 'thumb-img';
+                    img.loading = "lazy";
+                    imgWrapper.appendChild(img);
+
+                    const textDiv = document.createElement('div');
+                    textDiv.className = 'thumb-text';
+                    
+                    const titleSpan = document.createElement('span');
+                    titleSpan.className = 'thumb-title';
+                    titleSpan.textContent = slide.title;
+                    
+                    const subSpan = document.createElement('span');
+                    subSpan.className = 'thumb-subtitle';
+                    subSpan.innerHTML = `<i class="fa-solid fa-user-group text-[10px] mr-1"></i> ${slide.capacity}`;
+
+                    textDiv.appendChild(titleSpan);
+                    textDiv.appendChild(subSpan);
+
+                    card.appendChild(imgWrapper);
+                    card.appendChild(textDiv);
+                    track.appendChild(card);
+                }
+
+                // Mobile Card
+                if (mobileTrack) {
+                    const mCard = document.createElement('div');
+                    mCard.className = 'snap-center shrink-0 cursor-pointer mobile-thumb-card';
+                    mCard.onclick = () => window.goToSlide(i);
+                    
+                    const mImg = document.createElement('img');
+                    mImg.src = slide.thumb;
+                    mImg.alt = slide.title;
+                    mImg.className = 'w-20 h-20 rounded-xl object-cover border-2 transition-all duration-300 shadow-md';
+                    
+                    if (i === currentIndex) {
+                        mImg.classList.add('border-golden', 'scale-110', 'opacity-100');
+                        mImg.classList.remove('border-transparent', 'opacity-50');
+                    } else {
+                        mImg.classList.add('border-transparent', 'opacity-50');
+                        mImg.classList.remove('border-golden', 'scale-110', 'opacity-100');
+                    }
+                    
+                    mCard.appendChild(mImg);
+                    mobileTrack.appendChild(mCard);
+                }
+            });
+        }
+
+        function initSlider() {
+            const bgImage = document.getElementById('bg-image');
+            if (!bgImage) return;
+
+            // Set initial background safely
+            bgImage.style.backgroundImage = `url('${slidesData[currentIndex].bg}')`;
+
+            buildCarousel();
+
+            window.goToSlide = function(index) {
+                if (index === currentIndex || isAnimating) return;
+                isAnimating = true;
+                
+                const data = slidesData[index];
+                const contentGroup = document.getElementById('content-group');
+                // Dynamically fetch to avoid closure issues during page transitions
+                const dynamicBgImage = document.getElementById('bg-image');
+                
+                // Fade out content and dim background slightly
+                if(contentGroup) contentGroup.classList.remove('visible');
+                if(dynamicBgImage) dynamicBgImage.style.opacity = '0.5'; 
+
+                setTimeout(() => {
+                    // Update Text
+                    const titleEl = document.getElementById('slide-title');
+                    const descEl = document.getElementById('slide-desc');
+                    const priceEl = document.getElementById('slide-price');
+                    const priceUnitEl = document.getElementById('slide-price-unit');
+                    
+                    if(titleEl) titleEl.innerHTML = data.title;
+                    if(descEl) descEl.innerHTML = data.desc;
+                    if(priceEl) priceEl.innerHTML = data.price;
+                    if(priceUnitEl) priceUnitEl.innerHTML = data.unit;
+                    
+                    // Update Background
+                    if(dynamicBgImage) {
+                        dynamicBgImage.style.backgroundImage = `url('${data.bg}')`;
+                        dynamicBgImage.style.opacity = '1';
+                    }
+                    
+                    // Fade in content and restore background opacity
+                    if(contentGroup) contentGroup.classList.add('visible');
+
+                    // Update Desktop Thumbnails
+                    currentIndex = index;
+                    const thumbs = document.querySelectorAll('.thumb-card');
+                    thumbs.forEach((thumb, i) => {
+                        if (i === index) {
+                            thumb.classList.add('active-thumb');
+                            thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        } else {
+                            thumb.classList.remove('active-thumb');
+                        }
+                    });
+
+                    // Update Mobile Thumbnails
+                    const mThumbs = document.querySelectorAll('.mobile-thumb-card img');
+                    mThumbs.forEach((img, i) => {
+                        if (i === index) {
+                            img.classList.remove('border-transparent', 'opacity-50');
+                            img.classList.add('border-golden', 'scale-110', 'opacity-100');
+                            img.parentElement.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+                        } else {
+                            img.classList.add('border-transparent', 'opacity-50');
+                            img.classList.remove('border-golden', 'scale-110', 'opacity-100');
+                        }
+                    });
+
+                    // Allow next animation after transition completes
+                    setTimeout(() => {
+                        isAnimating = false;
+                    }, 600);
+                    
+                }, 400); // Wait for fade out
+            };
+        }
+
+        // Initialize immediately
+        setTimeout(initSlider, 50);
+    })();
+    </script>
+    </main>
+
+    <script src="../JS FILE/page-transition.js"></script>
+</body>
+</html>

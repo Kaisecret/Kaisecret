@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/webp" href="../images/ORR-LOGO.webp">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html { background: #f6ead9; }
+        body { background: #f6ead9; }
+    </style>
+    <script>
+        document.documentElement.classList.add('page-shell-loading');
+    </script>
+    <link rel="stylesheet" href="../CSS FILE/page-transition.css">
+    <title>Book Your Stay | ORR Beach Resort</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (Unified Config) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        golden: '#F4C542',
+                        sunset: '#F28C28',
+                        deepOrange: '#E96A1A',
+                        oceanBlue: '#2E8BC0',
+                        skyBlue: '#DFF4FF',
+                        sandBeige: '#F7E7CE',
+                        charcoal: '#333333',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* ---- Scroll Reveal ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay { transition-delay: 0.2s; }
+        .reveal-delay-2 { transition-delay: 0.4s; }
+        
+        /* Custom form focus styles */
+        .form-input-focus:focus {
+            outline: none;
+            border-color: #2E8BC0 !important;
+            box-shadow: 0 0 0 3px rgba(46, 139, 192, 0.15) !important;
+        }
+
+        /* Stylized Date Picker Input Calendar Icon */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            opacity: 0.6;
+            transition: 0.2s;
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans text-charcoal bg-sandBeige/20 antialiased overflow-x-hidden">
+
+    <!-- Page Shell Transition -->
+    <div class="page-shell" data-page-shell aria-hidden="true">
+        <div class="page-shell__card">
+            <div class="page-shell__brand">
+                <div class="page-shell__logo"></div>
+                <div class="page-shell__brand-copy">
+                    <div class="page-shell__line page-shell__line--title"></div>
+                    <div class="page-shell__line page-shell__line--subtitle"></div>
+                </div>
+            </div>
+            <div class="page-shell__hero">
+                <div class="page-shell__line page-shell__line--hero-lg"></div>
+                <div class="page-shell__line page-shell__line--hero-md"></div>
+                <div class="page-shell__line page-shell__line--hero-sm"></div>
+            </div>
+            <div class="page-shell__grid">
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="home.html" class="flex items-center gap-3 shrink-0">
+                    <img src="../images/ORR-LOGO.webp" alt="ORR Beach Resort Logo" class="h-10 sm:h-12 w-auto object-contain">
+                    <div>
+                        <div class="font-heading font-bold text-[15px] sm:text-xl text-oceanBlue leading-tight">ORR Beach Resort</div>
+                        <div class="text-[8px] sm:text-[10px] text-sunset tracking-wider uppercase font-medium mt-0.5">Banawon, Hamtic, Antique</div>
+                    </div>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden xl:flex items-center space-x-6">
+                    <a href="home.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Home</a>
+                    <a href="about.html" class="text-charcoal hover:text-sunset font-medium transition-colors">About</a>
+                    <a href="accommodations.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Accommodations</a>
+                    <a href="dining.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Dining</a>
+                    <a href="amenities.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Amenities</a>
+                    <a href="gallery.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Gallery</a>
+                    <a href="contact.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Contact</a>
+                    <!-- Book Now acts as active on this page since it's the booking form -->
+                    <a href="booking.html" class="bg-deepOrange text-white px-6 py-2.5 rounded-full font-semibold transition-colors shadow-md">Book Now</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="xl:hidden flex items-center">
+                    <button class="text-charcoal hover:text-sunset focus:outline-none mobile-menu-btn">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] flex flex-col pt-24 px-6 pb-8 transform translate-x-full transition-transform duration-500 ease-in-out xl:hidden">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-charcoal hover:text-sunset p-2">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="flex flex-col space-y-6 text-2xl font-heading font-semibold text-center mt-8">
+            <a href="home.html" class="hover:text-sunset transition-colors">Home</a>
+            <a href="about.html" class="hover:text-sunset transition-colors">About</a>
+            <a href="accommodations.html" class="hover:text-sunset transition-colors">Accommodations</a>
+            <a href="dining.html" class="hover:text-sunset transition-colors">Dining</a>
+            <a href="amenities.html" class="hover:text-sunset transition-colors">Amenities</a>
+            <a href="gallery.html" class="hover:text-sunset transition-colors">Gallery</a>
+            <a href="contact.html" class="hover:text-sunset transition-colors">Contact</a>
+        </div>
+        <div class="mt-auto flex flex-col items-center">
+            <a href="booking.html" class="bg-sunset hover:bg-deepOrange text-white px-8 py-4 rounded-full font-bold text-xl w-full text-center transition-all shadow-lg mb-6">Book Now</a>
+            <div class="flex gap-6 justify-center text-xl">
+                <a href="#" class="w-12 h-12 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-12 h-12 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-12 h-12 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="text-xs text-gray-400 mt-6 capitalize">&copy; 2026 ORR Beach Resort. All rights reserved.</p>
+        </div>
+    </div>
+
+    </nav>
+
+    <main id="page-content" class="page-content transition-content">
+
+        <!-- ==================== HERO HEADER ==================== -->
+        <section class="relative min-h-[45vh] flex items-center pt-20 overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0">
+                <img src="../images/standard-queen-room.webp" alt="Beautiful Queen Room" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-[#00172e]/60"></div>
+            </div>
+            <!-- Text Content -->
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
+                <p class="text-golden font-semibold tracking-[0.35em] uppercase text-sm mb-4 justify-center flex items-center">
+                    <span class="w-8 h-0.5 bg-golden mr-4"></span>Reservation<span class="w-8 h-0.5 bg-golden ml-4"></span>
+                </p>
+                <h1 class="font-heading text-5xl md:text-7xl font-bold text-white leading-tight mb-4">Book Your <span class="text-skyBlue">Stay</span></h1>
+                <p class="text-white/90 text-lg max-w-2xl mx-auto">Send a stay request and let us prepare a perfect tropical experience tailored to you.</p>
+            </div>
+        </section>
+
+        <!-- ==================== BOOKING SECTION ==================== -->
+        <section class="py-20 md:py-24 relative -mt-16 z-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid lg:grid-cols-3 gap-8 items-start">
+                    
+                    <!-- Left: Booking Form (Takes up 2 columns) -->
+                    <div class="lg:col-span-2 bg-white rounded-[2rem] p-8 md:p-12 shadow-[0_15px_50px_rgba(0,0,0,0.08)] border border-gray-100 reveal">
+                        <div class="mb-8">
+                            <h2 class="font-heading text-3xl font-bold text-charcoal mb-2">Reservation Request</h2>
+                            <p class="text-gray-500">Please fill out your details and desired dates. Our reservations team will confirm availability shortly.</p>
+                        </div>
+
+                        <form class="space-y-6">
+                            
+                            <!-- Personal Info -->
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-charcoal mb-2" for="full-name">Full Name <span class="text-sunset">*</span></label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                            <i class="far fa-user text-gray-400"></i>
+                                        </div>
+                                        <input id="full-name" type="text" class="form-input-focus w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-charcoal placeholder-gray-400 transition-all font-medium" placeholder="E.g. Jane Doe" required>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-charcoal mb-2" for="email">Email Address <span class="text-sunset">*</span></label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                            <i class="far fa-envelope text-gray-400"></i>
+                                        </div>
+                                        <input id="email" type="email" class="form-input-focus w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-charcoal placeholder-gray-400 transition-all font-medium" placeholder="jane@example.com" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Dates -->
+                            <div class="grid md:grid-cols-2 gap-6 pt-2">
+                                <div>
+                                    <label class="block text-sm font-semibold text-charcoal mb-2" for="check-in">Check-in Date <span class="text-sunset">*</span></label>
+                                    <input id="check-in" type="date" class="form-input-focus w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-charcoal transition-all font-medium cursor-pointer" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-charcoal mb-2" for="check-out">Check-out Date <span class="text-sunset">*</span></label>
+                                    <input id="check-out" type="date" class="form-input-focus w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-charcoal transition-all font-medium cursor-pointer" required>
+                                </div>
+                            </div>
+
+                            <!-- Room & Guests -->
+                            <div class="grid md:grid-cols-2 gap-6 pt-2">
+                                <div>
+                                    <label class="block text-sm font-semibold text-charcoal mb-2" for="room">Preferred Accommodation <span class="text-sunset">*</span></label>
+                                    <div class="relative">
+                                        <select id="room" class="form-input-focus w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-charcoal transition-all appearance-none cursor-pointer font-medium" required>
+                                            <option value="" disabled selected>Select a room...</option>
+                                            <option value="queen">Standard Queen Room</option>
+                                            <option value="twin">Standard Twin Room</option>
+                                            <option value="cabana_day">Poolside Cabana (Day Use)</option>
+                                            <option value="cabana_night">Poolside Cabana (Night Use)</option>
+                                            <option value="family">Family-Friendly Space</option>
+                                            <option value="swimming_only">Swimming Access / Day Tour</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
+                                            <i class="fas fa-chevron-down text-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-charcoal mb-2" for="guests">Number of Guests <span class="text-sunset">*</span></label>
+                                    <div class="relative">
+                                        <select id="guests" class="form-input-focus w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-charcoal transition-all appearance-none cursor-pointer font-medium" required>
+                                            <option value="1">1 Guest</option>
+                                            <option value="2" selected>2 Guests</option>
+                                            <option value="3">3 Guests</option>
+                                            <option value="4">4 Guests</option>
+                                            <option value="5+">5+ Guests</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
+                                            <i class="fas fa-chevron-down text-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notes -->
+                            <div class="pt-2">
+                                <label class="block text-sm font-semibold text-charcoal mb-2" for="notes">Special Requests / Notes</label>
+                                <textarea id="notes" rows="4" class="form-input-focus w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl text-charcoal placeholder-gray-400 transition-all resize-none font-medium" placeholder="E.g. We are celebrating an anniversary, early check-in requested if possible, etc."></textarea>
+                            </div>
+
+                            <button id="submit-booking" type="button" class="w-full bg-sunset hover:bg-deepOrange text-white font-bold text-lg py-4 rounded-xl shadow-[0_6px_20px_rgba(242,140,40,0.35)] hover:shadow-[0_8px_25px_rgba(233,106,26,0.5)] transform hover:-translate-y-1 transition-all duration-300 mt-4 flex justify-center items-center">
+                                Submit Booking Request <i class="fas fa-arrow-right ml-3"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right: Info Sidebar (1 column) -->
+                    <div class="space-y-6 reveal reveal-delay">
+                        
+                        <!-- Perks Box -->
+                        <div class="bg-white rounded-3xl p-8 shadow-md border border-gray-100">
+                            <h3 class="font-heading text-2xl font-bold text-oceanBlue mb-6 border-b border-gray-100 pb-4">Why Book Direct?</h3>
+                            
+                            <ul class="space-y-5">
+                                <li class="flex items-start">
+                                    <div class="w-10 h-10 rounded-full bg-golden/15 flex items-center justify-center shrink-0 mr-4">
+                                        <i class="fas fa-tags text-golden"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-charcoal text-sm">Best Rate Guarantee</h4>
+                                        <p class="text-xs text-gray-500 mt-1 pb-1">You won't find better prices anywhere else online.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-10 h-10 rounded-full bg-sunset/10 flex items-center justify-center shrink-0 mr-4">
+                                        <i class="fas fa-glass-martini-alt text-sunset"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-charcoal text-sm">Welcome Drink</h4>
+                                        <p class="text-xs text-gray-500 mt-1 pb-1">Enjoy a complimentary refreshment upon arrival.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-10 h-10 rounded-full bg-oceanBlue/10 flex items-center justify-center shrink-0 mr-4">
+                                        <i class="fas fa-wifi text-oceanBlue"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-charcoal text-sm">Free Wi-Fi</h4>
+                                        <p class="text-xs text-gray-500 mt-1 pb-1">Stay connected from your room to the beach.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-10 h-10 rounded-full bg-charcoal/5 flex items-center justify-center shrink-0 mr-4">
+                                        <i class="far fa-calendar-check text-charcoal/70"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-charcoal text-sm">Flexible Cancellation</h4>
+                                        <p class="text-xs text-gray-500 mt-1 pb-1">Modify dates securely directly with our team.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Need Help Box -->
+                        <div class="bg-oceanBlue text-white rounded-3xl p-8 shadow-lg relative overflow-hidden group">
+                            <!-- Background accent -->
+                            <div class="absolute -right-8 -bottom-8 opacity-10 transform group-hover:scale-110 transition-transform duration-700">
+                                <i class="fas fa-life-ring text-9xl"></i>
+                            </div>
+                            
+                            <div class="relative z-10">
+                                <h3 class="font-heading text-xl font-bold mb-3">Need Help Booking?</h3>
+                                <p class="text-skyBlue text-sm mb-6 leading-relaxed">Our reservations team is available daily from 8:00 AM to 9:00 PM to assist you.</p>
+                                
+                                <a href="tel:+639001234567" class="flex items-center text-white font-bold hover:text-golden transition-colors mb-3">
+                                    <i class="fas fa-phone-alt w-6"></i> +63 900 123 4567
+                                </a>
+                                <a href="mailto:reservations@orrbeachresort.com" class="flex items-center text-white font-bold hover:text-golden transition-colors break-all">
+                                    <i class="fas fa-envelope w-6"></i> reservations@orrbeachresort.com
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Success Modal -->
+        <div id="booking-success-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity opacity-0 duration-300" id="modal-backdrop"></div>
+            
+            <!-- Modal Content -->
+            <div class="bg-white rounded-[2rem] p-8 md:p-12 max-w-md w-full mx-4 relative z-10 transform scale-95 opacity-0 transition-all duration-300 shadow-2xl" id="modal-content">
+                <!-- Close Button -->
+                <button id="close-modal-btn" class="absolute top-6 right-6 text-gray-400 hover:text-charcoal transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                
+                <div class="text-center">
+                    <!-- Success Icon -->
+                    <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check text-4xl text-green-500"></i>
+                    </div>
+                    
+                    <h3 class="font-heading text-3xl font-bold text-charcoal mb-4">Request Sent!</h3>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Thank you for choosing ORR Beach Resort. Your reservation request has been successfully submitted. Our team will review your details and contact you shortly!
+                    </p>
+                    
+                    <a href="home.html" class="block w-full bg-oceanBlue hover:bg-[#206a96] text-white font-bold py-3.5 rounded-xl transition-all shadow-md text-center">
+                        Return to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form Logic for SPA -->
+        <script>
+            (function() {
+                const submitBtn = document.getElementById('submit-booking');
+                const modal = document.getElementById('booking-success-modal');
+                const backdrop = document.getElementById('modal-backdrop');
+                const content = document.getElementById('modal-content');
+                const closeBtn = document.getElementById('close-modal-btn');
+
+                if(submitBtn) {
+                    // Try to clear existing listeners to prevent duplicates if reloaded
+                    const newBtn = submitBtn.cloneNode(true);
+                    if(submitBtn.parentNode) submitBtn.parentNode.replaceChild(newBtn, submitBtn);
+                    
+                    newBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        
+                        const name = document.getElementById('full-name').value;
+                        const email = document.getElementById('email').value;
+                        const room = document.getElementById('room').value;
+                        if (!name || !email || !room) {
+                            alert("Please fill in your name, email, and preferred room first.");
+                            return;
+                        }
+                        
+                        if(modal && backdrop && content) {
+                            modal.classList.remove('hidden');
+                            
+                            setTimeout(() => {
+                                backdrop.classList.remove('opacity-0');
+                                backdrop.classList.add('opacity-100');
+                                content.classList.remove('scale-95', 'opacity-0');
+                                content.classList.add('scale-100', 'opacity-100');
+                            }, 10);
+                        }
+                    });
+                }
+
+                const hideModal = () => {
+                    if(backdrop && content && modal) {
+                        backdrop.classList.remove('opacity-100');
+                        backdrop.classList.add('opacity-0');
+                        content.classList.remove('scale-100', 'opacity-100');
+                        content.classList.add('scale-95', 'opacity-0');
+                        
+                        setTimeout(() => {
+                            modal.classList.add('hidden');
+                        }, 300);
+                    }
+                };
+
+                if(closeBtn) closeBtn.addEventListener('click', hideModal);
+                if(backdrop) backdrop.addEventListener('click', hideModal);
+            })();
+        </script>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-[#1e5c80] text-white pt-16 pb-8 border-t-4 border-sunset">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <a href="home.html" class="flex items-center gap-3 mb-6">
+                        <img src="../images/ORR-LOGO.webp" alt="ORR Beach Resort Logo" class="h-16 w-auto object-contain bg-white rounded-lg p-1.5 shadow-sm">
+                        <div>
+                            <div class="font-heading font-bold text-2xl tracking-wide">ORR Beach Resort</div>
+                        </div>
+                    </a>
+                    <p class="text-skyBlue/80 mb-8 leading-relaxed">A relaxing tropical escape by the sea, offering the perfect blend of modern comfort and natural beauty in Antique.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-xl font-bold mb-6 text-golden">Quick Links</h4>
+                    <ul class="space-y-3 text-skyBlue/90">
+                        <li><a href="home.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Home</a></li>
+                        <li><a href="about.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> About Us</a></li>
+                        <li><a href="accommodations.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Accommodations</a></li>
+                        <li><a href="dining.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Dining</a></li>
+                        <li><a href="amenities.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Amenities</a></li>
+                        <li><a href="gallery.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-xl font-bold mb-6 text-golden">Contact Info</h4>
+                    <ul class="space-y-4 text-skyBlue/90">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1.5 mr-3 text-sunset"></i>
+                            Banawon, Hamtic, Antique,<br>Philippines
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-sunset"></i>
+                            +63 900 123 4567
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-sunset"></i>
+                            info@orrbeachresort.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-skyBlue/20 pt-8 mt-8 text-center text-skyBlue/60 text-sm flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2026 ORR Beach Resort. All rights reserved.</p>
+                <div class="space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+
+    <!-- Scroll Reveal -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                    else entry.target.classList.remove('active');
+                });
+            }, { threshold: 0.1 });
+            reveals.forEach(el => revealOnScroll.observe(el));
+        });
+    </script>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+            smoothTouch: false,
+        });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+    </script>
+
+    <script src="../JS FILE/page-transition.js"></script>
+</body>
+</html>

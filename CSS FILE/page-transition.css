@@ -1,0 +1,73 @@
+/* Page Transition CSS */
+html {
+    scrollbar-gutter: stable;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+/* The container that fades out and in during fetch navigation */
+.page-content {
+    opacity: 1;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-content.fade-out {
+    opacity: 0;
+}
+
+/* Loading Overlay UI */
+.loading-overlay {
+    position: fixed;
+    top: 80px; /* Sits right below the 80px fixed header */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    z-index: 40; /* Below the z-50 header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.loading-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Premium Spinner */
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #F28C28; /* Matches the Sunset Orange brand color */
+    border-radius: 50%;
+    animation: spin 1s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
+    margin-bottom: 24px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Pulsating Loading Text */
+.loading-text {
+    font-family: 'Playfair Display', serif; /* Matches heading font */
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2E8BC0; /* Ocean Blue */
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1); }
+}

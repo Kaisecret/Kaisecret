@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/webp" href="../images/ORR-LOGO.webp">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        html { background: #f6ead9; }
+        body { background: #f6ead9; }
+    </style>
+    <script>
+        document.documentElement.classList.add('page-shell-loading');
+    </script>
+    <link rel="stylesheet" href="../CSS FILE/page-transition.css">
+<title>Attractions | The Relax Beach</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandCyan: '#00b4d8',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+    <div class="page-shell" data-page-shell aria-hidden="true">
+        <div class="page-shell__card">
+            <div class="page-shell__brand">
+                <div class="page-shell__logo"></div>
+                <div class="page-shell__brand-copy">
+                    <div class="page-shell__line page-shell__line--title"></div>
+                    <div class="page-shell__line page-shell__line--subtitle"></div>
+                </div>
+            </div>
+            <div class="page-shell__hero">
+                <div class="page-shell__line page-shell__line--hero-lg"></div>
+                <div class="page-shell__line page-shell__line--hero-md"></div>
+                <div class="page-shell__line page-shell__line--hero-sm"></div>
+            </div>
+            <div class="page-shell__grid">
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="relative min-h-[55vh] bg-cover bg-center text-white" style="background-image: linear-gradient(rgba(4, 16, 27, 0.7), rgba(4, 16, 27, 0.55)), url('../images/beach-view-with-palm-tree.webp');">
+        <nav class="px-6 py-5 md:px-12 flex justify-between items-start gap-6">
+            <a href="home.html" class="text-xl md:text-2xl font-semibold tracking-wide shrink-0">The Relax Beach</a>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center ml-auto">
+                <button class="text-white hover:text-cyan-200 focus:outline-none mobile-menu-btn">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <ul class="hidden xl:flex flex-wrap justify-end gap-x-5 gap-y-2 text-[11px] lg:text-xs uppercase tracking-[0.18em]">
+                <li><a href="home.html" class="hover:text-cyan-200 transition">Home</a></li>
+                <li><a href="about.html" class="hover:text-cyan-200 transition">About</a></li>
+                <li><a href="accommodations.html" class="hover:text-cyan-200 transition">Accommodations</a></li>
+                <li><a href="amenities.html" class="hover:text-cyan-200 transition">Amenities</a></li>
+                <li><a href="gallery.html" class="hover:text-cyan-200 transition">Gallery</a></li>
+                <li><a href="attractions.html" class="border-b-2 border-white pb-1">Attractions</a></li>
+                <li><a href="booking.html" class="hover:text-cyan-200 transition">Booking</a></li>
+                <li><a href="location.html" class="hover:text-cyan-200 transition">Location</a></li>
+                <li><a href="contact.html" class="hover:text-cyan-200 transition">Contact</a></li>
+            </ul>
+        </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] shadow-2xl border-l border-gray-100 bg-white z-[60] flex flex-col pt-16 px-6 pb-8 transform translate-x-full transition-transform duration-500 ease-in-out xl:hidden text-slate-800">
+        <button id="close-menu-btn" class="absolute top-4 right-4 text-charcoal hover:text-sunset p-2 focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="flex flex-col space-y-5 text-xl font-heading font-semibold text-center mt-4">
+            <a href="home.html" class="hover:text-brandCyan transition-colors">Home</a>
+            <a href="about.html" class="hover:text-brandCyan transition-colors">About</a>
+            <a href="accommodations.html" class="hover:text-brandCyan transition-colors">Accommodations</a>
+            <a href="dining.html" class="hover:text-brandCyan transition-colors">Dining</a>
+            <a href="amenities.html" class="hover:text-brandCyan transition-colors">Amenities</a>
+            <a href="gallery.html" class="hover:text-brandCyan transition-colors">Gallery</a>
+            <a href="contact.html" class="hover:text-brandCyan transition-colors">Contact</a>
+        </div>
+        <div class="mt-auto flex flex-col items-center">
+            <a href="booking.html" class="bg-brandCyan hover:opacity-90 text-white px-6 py-3 rounded-full font-bold text-lg w-full text-center transition-all shadow-lg mb-6">Book Now</a>
+            <p class="text-[10px] text-slate-400 mt-6 capitalize">&copy; 2026 The Relax Beach. All rights reserved.</p>
+        </div>
+    </div>
+        <div class="px-6 md:px-12 pt-16 pb-20 max-w-3xl">
+            <p class="text-sm uppercase tracking-[0.35em] text-cyan-100">Attractions</p>
+            <h1 class="mt-4 text-4xl md:text-5xl font-black uppercase leading-none">What guests usually come for once they arrive.</h1>
+        </div>
+    </header>
+
+    <main id="page-content" class="page-content transition-content max-w-6xl mx-auto px-6 md:px-12 py-16 md:py-20">
+        <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+            <article class="bg-white rounded-3xl p-7 shadow-sm"><h2 class="text-2xl font-bold">Beachfront Walks</h2><p class="mt-3 text-sm leading-7 text-slate-600">Easy shoreline access and open views that make the resort feel calmer than the city pace.</p></article>
+            <article class="bg-white rounded-3xl p-7 shadow-sm"><h2 class="text-2xl font-bold">Sunset Dining</h2><p class="mt-3 text-sm leading-7 text-slate-600">Outdoor meal setups with ocean-facing seating and warm golden-hour lighting.</p></article>
+            <article class="bg-white rounded-3xl p-7 shadow-sm"><h2 class="text-2xl font-bold">Poolside Relaxation</h2><p class="mt-3 text-sm leading-7 text-slate-600">Swim, lounge, or gather around the pool area through the afternoon and into the evening.</p></article>
+            <article class="bg-white rounded-3xl p-7 shadow-sm"><h2 class="text-2xl font-bold">Event Moments</h2><p class="mt-3 text-sm leading-7 text-slate-600">From wedding entrances to family celebrations, the venue supports memorable occasions.</p></article>
+        </section>
+    </main>
+
+    <script src="../JS FILE/page-transition.js"></script>
+</body>
+</html>

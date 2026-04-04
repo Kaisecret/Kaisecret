@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/webp" href="../images/ORR-LOGO.webp">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html { background: #F7E7CE; } /* sandBeige */
+        body { background: #F7E7CE; }
+    </style>
+    <script>
+        document.documentElement.classList.add('page-shell-loading');
+    </script>
+    <link rel="stylesheet" href="../CSS FILE/page-transition.css">
+    <title>Gallery | ORR Beach Resort</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS - SAME config as home.html -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        golden: '#F4C542',
+                        sunset: '#F28C28',
+                        deepOrange: '#E96A1A',
+                        oceanBlue: '#2E8BC0',
+                        skyBlue: '#DFF4FF',
+                        sandBeige: '#F7E7CE',
+                        charcoal: '#333333',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* ---- Scroll Reveal ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay { transition-delay: 0.2s; }
+        .reveal-delay-2 { transition-delay: 0.4s; }
+        
+        /* Disable scroll reveal explicitly on mobile to prevent empty load states */
+        @media (max-width: 768px) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .reveal-delay, .reveal-delay-2 {
+                transition-delay: 0s !important;
+            }
+        }
+
+        /* ---- Image Hover Zoom ---- */
+        .image-hover-zoom img {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        .image-hover-zoom:hover img {
+            transform: scale(1.08);
+        }
+
+        /* ---- Floating label on hover ---- */
+        .gallery-card:hover .card-label {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .card-label {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        /* ---- Active filter tab ---- */
+        .filter-tab.active {
+            background-color: #2E8BC0; /* oceanBlue */
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(46,139,192,0.35);
+        }
+        .filter-tab {
+            transition: all 0.3s ease;
+        }
+
+        /* ---- Gallery item hide/show transition ---- */
+        .gallery-item {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .gallery-item.hidden-item {
+            opacity: 0;
+            transform: scale(0.96);
+            pointer-events: none;
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-sans text-charcoal bg-white antialiased overflow-x-hidden">
+
+    <!-- Page Shell Transition -->
+    <div class="page-shell" data-page-shell aria-hidden="true">
+        <div class="page-shell__card">
+            <div class="page-shell__brand">
+                <div class="page-shell__logo"></div>
+                <div class="page-shell__brand-copy">
+                    <div class="page-shell__line page-shell__line--title"></div>
+                    <div class="page-shell__line page-shell__line--subtitle"></div>
+                </div>
+            </div>
+            <div class="page-shell__hero">
+                <div class="page-shell__line page-shell__line--hero-lg"></div>
+                <div class="page-shell__line page-shell__line--hero-md"></div>
+                <div class="page-shell__line page-shell__line--hero-sm"></div>
+            </div>
+            <div class="page-shell__grid">
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== NAVBAR (same as home.html) ==================== -->
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="home.html" class="flex items-center gap-3 shrink-0">
+                    <img src="../images/ORR-LOGO.webp" alt="ORR Beach Resort Logo" class="h-10 sm:h-12 w-auto object-contain">
+                    <div>
+                        <div class="font-heading font-bold text-[15px] sm:text-xl text-oceanBlue leading-tight">ORR Beach Resort</div>
+                        <div class="text-[8px] sm:text-[10px] text-sunset tracking-wider uppercase font-medium mt-0.5">Banawon, Hamtic, Antique</div>
+                    </div>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden xl:flex items-center space-x-6">
+                    <a href="home.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Home</a>
+                    <a href="about.html" class="text-charcoal hover:text-sunset font-medium transition-colors">About</a>
+                    <a href="accommodations.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Accommodations</a>
+                    <a href="dining.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Dining</a>
+                    <a href="amenities.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Amenities</a>
+                    <a href="gallery.html" class="text-sunset font-medium border-b-2 border-sunset pb-1 transition-colors">Gallery</a>
+                    <a href="contact.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Contact</a>
+                    <a href="booking.html" class="bg-sunset hover:bg-deepOrange text-white px-6 py-2.5 rounded-full font-semibold transition-colors shadow-sm">Book Now</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="xl:hidden flex items-center">
+                    <button class="text-charcoal hover:text-sunset focus:outline-none mobile-menu-btn">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] flex flex-col pt-24 px-6 pb-8 transform translate-x-full transition-transform duration-500 ease-in-out xl:hidden">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-charcoal hover:text-sunset p-2">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="flex flex-col space-y-6 text-2xl font-heading font-semibold text-center mt-8">
+            <a href="home.html" class="hover:text-sunset transition-colors">Home</a>
+            <a href="about.html" class="hover:text-sunset transition-colors">About</a>
+            <a href="accommodations.html" class="hover:text-sunset transition-colors">Accommodations</a>
+            <a href="dining.html" class="hover:text-sunset transition-colors">Dining</a>
+            <a href="amenities.html" class="hover:text-sunset transition-colors">Amenities</a>
+            <a href="gallery.html" class="text-sunset transition-colors">Gallery</a>
+            <a href="contact.html" class="hover:text-sunset transition-colors">Contact</a>
+        </div>
+        <div class="mt-auto flex flex-col items-center">
+            <a href="booking.html" class="bg-sunset hover:bg-deepOrange text-white px-8 py-4 rounded-full font-bold text-xl w-full text-center transition-all shadow-lg mb-6">Book Now</a>
+            <div class="flex gap-6 justify-center text-xl">
+                <a href="#" class="w-12 h-12 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-12 h-12 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-12 h-12 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="text-xs text-gray-400 mt-6 capitalize">&copy; 2026 ORR Beach Resort. All rights reserved.</p>
+        </div>
+    </div>
+
+    </nav>
+
+    <main id="page-content" class="page-content transition-content">
+    <!-- ==================== HERO HEADER ==================== -->
+    <section class="relative min-h-[50vh] flex items-end pt-20 overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="../images/aerial-beachfront-building-and-lap-pool.webp" alt="Resort Aerial View" class="w-full h-full object-cover">
+            <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(46,139,192,0.5) 0%, rgba(0,0,0,0.7) 100%);"></div>
+        </div>
+        <!-- Text Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 w-full">
+            <p class="text-skyBlue font-semibold tracking-[0.35em] uppercase text-sm mb-3 flex items-center">
+                <span class="w-8 h-0.5 bg-golden mr-4"></span>Photo Gallery
+            </p>
+            <h1 class="font-heading text-5xl md:text-7xl font-bold text-white leading-tight max-w-3xl">A Visual Tour<br><span class="text-golden">of Paradise</span></h1>
+            <p class="text-skyBlue/80 mt-4 text-lg max-w-xl">Explore our rooms, dining experiences, facilities, and all the beautiful spaces that make ORR Beach Resort unique.</p>
+        </div>
+    </section>
+
+    <!-- ==================== TABBED GALLERY SECTION ==================== -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Tag -->
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-oceanBlue font-semibold tracking-wider uppercase mb-4 flex items-center justify-center">
+                    <span class="w-10 h-0.5 bg-oceanBlue mr-4"></span>Our Gallery<span class="w-10 h-0.5 bg-oceanBlue ml-4"></span>
+                </h2>
+
+                <!-- Filter Tabs (Pill Style) -->
+                <div class="flex flex-wrap justify-center gap-3 mt-6" id="gallery-filters">
+                    <button class="filter-tab active px-7 py-3 rounded-full text-sm font-semibold border-2 border-oceanBlue" data-filter="all">
+                        <i class="fas fa-th-large mr-2"></i>All Photos
+                    </button>
+                    <button class="filter-tab px-7 py-3 rounded-full text-sm font-semibold border-2 border-gray-200 text-gray-500 hover:border-oceanBlue hover:text-oceanBlue" data-filter="accommodations">
+                        <i class="fas fa-bed mr-2"></i>Accommodations
+                    </button>
+                    <button class="filter-tab px-7 py-3 rounded-full text-sm font-semibold border-2 border-gray-200 text-gray-500 hover:border-oceanBlue hover:text-oceanBlue" data-filter="dining">
+                        <i class="fas fa-utensils mr-2"></i>Dining & Bar
+                    </button>
+                    <button class="filter-tab px-7 py-3 rounded-full text-sm font-semibold border-2 border-gray-200 text-gray-500 hover:border-oceanBlue hover:text-oceanBlue" data-filter="facilities">
+                        <i class="fas fa-umbrella-beach mr-2"></i>Facilities
+                    </button>
+                    <button class="filter-tab px-7 py-3 rounded-full text-sm font-semibold border-2 border-gray-200 text-gray-500 hover:border-oceanBlue hover:text-oceanBlue" data-filter="events">
+                        <i class="fas fa-glass-cheers mr-2"></i>Events
+                    </button>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal" id="gallery-grid">
+
+                <!-- 1: Facilities -->
+                <div class="gallery-item facilities gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/aerial-beachfront-building-and-lap-pool.webp" alt="Aerial View" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-sunset/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Facilities</span>
+                        <p class="text-white font-heading text-lg font-bold">Aerial Beachfront View</p>
+                    </div>
+                </div>
+
+                <!-- 2: Facilities -->
+                <div class="gallery-item facilities gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/main-building-and-pool-daytime.webp" alt="Main Pool" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-sunset/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Facilities</span>
+                        <p class="text-white font-heading text-lg font-bold">Main Building & Pool</p>
+                    </div>
+                </div>
+
+                <!-- 3: Accommodations -->
+                <div class="gallery-item accommodations gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/standard-queen-room.webp" alt="Queen Room" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-oceanBlue/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Accommodations</span>
+                        <p class="text-white font-heading text-lg font-bold">Standard Queen Room</p>
+                    </div>
+                </div>
+
+                <!-- 4: Accommodations -->
+                <div class="gallery-item accommodations gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/standard-twin-room.webp" alt="Twin Room" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-oceanBlue/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Accommodations</span>
+                        <p class="text-white font-heading text-lg font-bold">Standard Twin Room</p>
+                    </div>
+                </div>
+
+                <!-- 5: Accommodations -->
+                <div class="gallery-item accommodations gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/poolside-cabanas-at-night.webp" alt="Cabanas at Night" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-oceanBlue/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Accommodations</span>
+                        <p class="text-white font-heading text-lg font-bold">Cabanas by Night</p>
+                    </div>
+                </div>
+
+                <!-- 6: Accommodations -->
+                <div class="gallery-item accommodations gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/yellow-cabana-row-daytime.webp" alt="Cabana Row" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-oceanBlue/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Accommodations</span>
+                        <p class="text-white font-heading text-lg font-bold">Yellow Cabana Row</p>
+                    </div>
+                </div>
+
+                <!-- 7: Dining -->
+                <div class="gallery-item dining gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/sunset-beachfront-dining.webp" alt="Sunset Dining" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-golden/90 text-charcoal px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Dining</span>
+                        <p class="text-white font-heading text-lg font-bold">Sunset Beachfront Dining</p>
+                    </div>
+                </div>
+
+                <!-- 8: Dining -->
+                <div class="gallery-item dining gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/seafood-platter-poolside-cocktails.webp" alt="Seafood Platter" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-golden/90 text-charcoal px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Dining</span>
+                        <p class="text-white font-heading text-lg font-bold">Seafood Platter & Cocktails</p>
+                    </div>
+                </div>
+
+                <!-- 9: Dining -->
+                <div class="gallery-item dining gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/seafood-meal-and-iced-tea.webp" alt="Seafood Meal" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-golden/90 text-charcoal px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Dining</span>
+                        <p class="text-white font-heading text-lg font-bold">Seaside Meal & Iced Tea</p>
+                    </div>
+                </div>
+
+                <!-- 10: Facilities -->
+                <div class="gallery-item facilities gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/beach-view-with-palm-tree.webp" alt="Beach View" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-sunset/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Facilities</span>
+                        <p class="text-white font-heading text-lg font-bold">Beach View & Palm Trees</p>
+                    </div>
+                </div>
+
+                <!-- 11: Events -->
+                <div class="gallery-item events gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/floral-wedding-entrance.webp" alt="Wedding Entrance" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-deepOrange/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Events</span>
+                        <p class="text-white font-heading text-lg font-bold">Floral Wedding Entrance</p>
+                    </div>
+                </div>
+
+                <!-- 12: Events -->
+                <div class="gallery-item events gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/indoor-floral-reception-hall.webp" alt="Reception Hall" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-deepOrange/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Events</span>
+                        <p class="text-white font-heading text-lg font-bold">Floral Reception Hall</p>
+                    </div>
+                </div>
+
+                <!-- 13: Events -->
+                <div class="gallery-item events gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/oceanview-event-deck.webp" alt="Oceanview Event Deck" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-deepOrange/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Events</span>
+                        <p class="text-white font-heading text-lg font-bold">Oceanview Event Deck</p>
+                    </div>
+                </div>
+
+                <!-- 14: Facilities -->
+                <div class="gallery-item facilities gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/front-desk-staff-portrait.webp" alt="Staff" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-sunset/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Facilities</span>
+                        <p class="text-white font-heading text-lg font-bold">Welcome Team</p>
+                    </div>
+                </div>
+
+                <!-- 15: Events -->
+                <div class="gallery-item events gallery-card relative rounded-3xl overflow-hidden shadow-lg image-hover-zoom h-72 cursor-pointer">
+                    <img src="../images/group-at-orr-photo-spot.webp" alt="Group Photo" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="card-label absolute bottom-0 left-0 right-0 p-5">
+                        <span class="text-xs bg-deepOrange/90 text-white px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-2 inline-block">Events</span>
+                        <p class="text-white font-heading text-lg font-bold">Group Retreat</p>
+                    </div>
+                </div>
+
+            </div><!-- /gallery-grid -->
+        </div>
+    </section>
+
+    <!-- ==================== CTA STRIP ==================== -->
+    <section class="py-20 bg-oceanBlue relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('../images/sunset-beachfront-dining.webp')] bg-cover bg-center"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center reveal">
+            <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">Ready to Experience It Yourself?</h2>
+            <p class="text-skyBlue/80 text-lg mb-10">Book your stay today and become part of the ORR Beach Resort story.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="booking.html" class="bg-sunset hover:bg-deepOrange text-white px-10 py-4 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-sunset/30 hover:-translate-y-1">
+                    <i class="fas fa-calendar-check mr-2"></i>Book Now
+                </a>
+                <a href="home.html" class="bg-white/15 hover:bg-white/25 text-white border border-white/30 px-10 py-4 rounded-full font-bold text-lg transition-all hover:-translate-y-1">
+                    <i class="fas fa-home mr-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- ==================== FOOTER (same as home.html) ==================== -->
+    <footer class="bg-[#1e5c80] text-white pt-16 pb-8 border-t-4 border-sunset">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <a href="home.html" class="flex items-center gap-3 mb-6">
+                        <img src="../images/ORR-LOGO.webp" alt="ORR Beach Resort Logo" class="h-16 w-auto object-contain bg-white rounded-lg p-1.5 shadow-sm">
+                        <div>
+                            <div class="font-heading font-bold text-2xl tracking-wide">ORR Beach Resort</div>
+                        </div>
+                    </a>
+                    <p class="text-skyBlue/80 mb-8 leading-relaxed">A relaxing tropical escape by the sea, offering the perfect blend of modern comfort and natural beauty in Antique.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-xl font-bold mb-6 text-golden">Quick Links</h4>
+                    <ul class="space-y-3 text-skyBlue/90">
+                        <li><a href="home.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Home</a></li>
+                        <li><a href="about.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> About Us</a></li>
+                        <li><a href="accommodations.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Accommodations</a></li>
+                        <li><a href="dining.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Dining</a></li>
+                        <li><a href="amenities.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Amenities</a></li>
+                        <li><a href="gallery.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-xl font-bold mb-6 text-golden">Contact Info</h4>
+                    <ul class="space-y-4 text-skyBlue/90">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1.5 mr-3 text-sunset"></i>
+                            Banawon, Hamtic, Antique,<br>Philippines
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-sunset"></i>
+                            +63 900 123 4567
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-sunset"></i>
+                            info@orrbeachresort.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-skyBlue/20 pt-8 mt-8 text-center text-skyBlue/60 text-sm flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2026 ORR Beach Resort. All rights reserved.</p>
+                <div class="space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </main>
+
+    <!-- ==================== SCRIPTS ==================== -->
+
+    <!-- Scroll Reveal -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                    else entry.target.classList.remove('active');
+                });
+            }, { threshold: 0.1 });
+            reveals.forEach(el => revealOnScroll.observe(el));
+        });
+    </script>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md hidden flex items-center justify-center transition-opacity duration-300 opacity-0">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-sunset focus:outline-none z-[110]">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="relative w-full max-w-5xl px-4 py-8 max-h-screen flex flex-col items-center justify-center pointer-events-none">
+            <img id="lightbox-img" src="" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl scale-95 transition-transform duration-300 pointer-events-auto">
+            <div id="lightbox-caption" class="text-center text-white text-lg font-heading tracking-wide mt-4 pointer-events-auto"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const closeBtn = document.getElementById('lightbox-close');
+            const galleryCards = document.querySelectorAll('.gallery-card');
+
+            galleryCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const img = card.querySelector('img').src;
+                    const caption = card.querySelector('.card-label p').innerText;
+                    
+                    lightboxImg.src = img;
+                    lightboxCaption.innerText = caption;
+                    
+                    lightbox.classList.remove('hidden');
+                    // small delay to allow display block to apply before transition
+                    setTimeout(() => {
+                        lightbox.classList.remove('opacity-0');
+                        lightboxImg.classList.remove('scale-95');
+                        lightboxImg.classList.add('scale-100');
+                    }, 10);
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            const closeLightbox = () => {
+                lightbox.classList.add('opacity-0');
+                lightboxImg.classList.remove('scale-100');
+                lightboxImg.classList.add('scale-95');
+                setTimeout(() => {
+                    lightbox.classList.add('hidden');
+                    lightboxImg.src = '';
+                    document.body.style.overflow = '';
+                }, 300);
+            };
+
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if(e.target === lightbox) closeLightbox();
+            });
+        });
+    </script>
+
+    <!-- Gallery Tab Filter -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.filter-tab');
+            const items = document.querySelectorAll('.gallery-item');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Activate tab styling
+                    tabs.forEach(t => {
+                        t.classList.remove('active', 'bg-oceanBlue', 'text-white', 'border-oceanBlue');
+                        t.classList.add('border-gray-200', 'text-gray-500');
+                    });
+                    tab.classList.add('active', 'bg-oceanBlue', 'text-white', 'border-oceanBlue');
+                    tab.classList.remove('border-gray-200', 'text-gray-500');
+
+                    const filter = tab.getAttribute('data-filter');
+
+                    items.forEach(item => {
+                        // Animate out
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.94)';
+
+                        setTimeout(() => {
+                            if (filter === 'all' || item.classList.contains(filter)) {
+                                item.style.display = 'block';
+                                requestAnimationFrame(() => {
+                                    item.style.opacity = '1';
+                                    item.style.transform = 'scale(1)';
+                                });
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }, 280);
+                    });
+                });
+            });
+        });
+    </script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+            smoothTouch: false,
+        });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+    </script>
+
+    <script src="../JS FILE/page-transition.js"></script>
+</body>
+</html>

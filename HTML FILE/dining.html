@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/webp" href="../images/ORR-LOGO.webp">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html { scrollbar-gutter: stable; background: #ffffff; }
+        body { background: #ffffff; }
+    </style>
+    <script>
+        document.documentElement.classList.add('page-shell-loading');
+    </script>
+    <link rel="stylesheet" href="../CSS FILE/page-transition.css">
+    <title>Dining & Bar | ORR Beach Resort</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        golden: '#F4C542',
+                        sunset: '#F28C28',
+                        deepOrange: '#E96A1A',
+                        oceanBlue: '#2E8BC0',
+                        skyBlue: '#DFF4FF',
+                        sandBeige: '#F7E7CE',
+                        charcoal: '#333333',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(4, 20, 31, 0.3) 0%, rgba(4, 20, 31, 0.8) 100%);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        
+        .image-hover-zoom img {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        .image-hover-zoom:hover img {
+            transform: scale(1.08);
+        }
+        
+        /* Add smooth scroll for anchor links */
+        html { scrollbar-gutter: stable; background: #ffffff; }
+    </style>
+</head>
+<body class="font-sans text-charcoal bg-white antialiased overflow-x-hidden">
+    <div class="page-shell" data-page-shell aria-hidden="true">
+        <div class="page-shell__card">
+            <div class="page-shell__brand">
+                <div class="page-shell__logo"></div>
+                <div class="page-shell__brand-copy">
+                    <div class="page-shell__line page-shell__line--title"></div>
+                    <div class="page-shell__line page-shell__line--subtitle"></div>
+                </div>
+            </div>
+            <div class="page-shell__hero">
+                <div class="page-shell__line page-shell__line--hero-lg"></div>
+                <div class="page-shell__line page-shell__line--hero-md"></div>
+                <div class="page-shell__line page-shell__line--hero-sm"></div>
+            </div>
+            <div class="page-shell__grid">
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="home.html" class="flex items-center gap-3 shrink-0">
+                    <img src="../images/ORR-LOGO.webp" alt="ORR Beach Resort Logo" class="h-10 sm:h-12 w-auto object-contain">
+                    <div>
+                        <div class="font-heading font-bold text-[15px] sm:text-xl text-oceanBlue leading-tight">ORR Beach Resort</div>
+                        <div class="text-[8px] sm:text-[10px] text-sunset tracking-wider uppercase font-medium mt-0.5">Banawon, Hamtic, Antique</div>
+                    </div>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden xl:flex items-center space-x-6">
+                    <a href="home.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Home</a>
+                    <a href="about.html" class="text-charcoal hover:text-sunset font-medium transition-colors">About</a>
+                    <a href="accommodations.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Accommodations</a>
+                    <a href="dining.html" class="text-sunset font-medium transition-colors border-b-2 border-sunset pb-1">Dining</a>
+                    <a href="amenities.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Amenities</a>
+                    <a href="gallery.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Gallery</a>
+                    <a href="contact.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Contact</a>
+                    <a href="booking.html" class="bg-sunset hover:bg-deepOrange text-white px-6 py-2.5 rounded-full font-semibold transition-colors shadow-sm">Book Now</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="xl:hidden flex items-center">
+                    <button class="text-charcoal hover:text-sunset focus:outline-none mobile-menu-btn">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] shadow-2xl border-l border-gray-100 bg-white z-[60] flex flex-col pt-16 px-6 pb-8 transform translate-x-full transition-transform duration-500 ease-in-out xl:hidden">
+        <button id="close-menu-btn" class="absolute top-4 right-4 text-charcoal hover:text-sunset p-2 focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="flex flex-col space-y-5 text-xl font-heading font-semibold text-center mt-4">
+            <a href="home.html" class="hover:text-sunset transition-colors">Home</a>
+            <a href="about.html" class="hover:text-sunset transition-colors">About</a>
+            <a href="accommodations.html" class="hover:text-sunset transition-colors">Accommodations</a>
+            <a href="dining.html" class="text-sunset transition-colors">Dining</a>
+            <a href="amenities.html" class="hover:text-sunset transition-colors">Amenities</a>
+            <a href="gallery.html" class="hover:text-sunset transition-colors">Gallery</a>
+            <a href="contact.html" class="hover:text-sunset transition-colors">Contact</a>
+        </div>
+        <div class="mt-auto flex flex-col items-center">
+            <a href="booking.html" class="bg-sunset hover:bg-deepOrange text-white px-6 py-3 rounded-full font-bold text-lg w-full text-center transition-all shadow-lg mb-6">Book Now</a>
+            <div class="flex gap-4 justify-center text-xl">
+                <a href="#" class="w-10 h-10 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="text-[10px] text-gray-400 mt-6 capitalize">&copy; 2026 ORR Beach Resort. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- Main Content for Page Transitions -->
+    <main id="page-content" class="page-content transition-content">
+        
+        <!-- Hero Section -->
+        <header class="relative min-h-[70vh] flex items-center justify-center pt-24 pb-32 overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="../images/sunset-beachfront-dining.webp" alt="Dining by the Beach" class="w-full h-full object-cover object-center scale-105 filter blur-[1px]" />
+                <div class="absolute inset-0 hero-overlay"></div>
+            </div>
+            
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto reveal">
+                <span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md text-skyBlue text-sm font-semibold tracking-widest uppercase mb-6 border border-white/30">Dining & Bar</span>
+                <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 drop-shadow-lg leading-tight">A Taste of <br/><span class="text-golden italic font-medium">Paradise</span></h1>
+                <p class="text-lg md:text-xl text-skyBlue/90 font-light leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+                    Savor fresh local ingredients and coastal-inspired dishes right by the ocean. Enjoy sunset drinks and unforgettable dining moments.
+                </p>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce cursor-pointer opacity-80 hover:opacity-100 transition-opacity" onclick="document.getElementById('dining-experiences').scrollIntoView({behavior: 'smooth'})">
+                <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/40">
+                    <i class="fas fa-arrow-down text-white"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dining Experiences Section -->
+        <section id="dining-experiences" class="py-24 bg-[#FAFAFA] relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                    <h2 class="text-oceanBlue font-semibold tracking-widest uppercase mb-3 flex items-center justify-center">
+                        <span class="w-12 h-px bg-oceanBlue mr-4"></span> Culinary Journey <span class="w-12 h-px bg-oceanBlue ml-4"></span>
+                    </h2>
+                    <h3 class="font-heading text-4xl md:text-5xl font-bold text-charcoal leading-tight">Flavors of ORR Beach Resort</h3>
+                </div>
+
+                <div class="space-y-32">
+                    
+                    <!-- Feature 1: The Seaside Feast (Hero-style Block) -->
+                    <div class="grid lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 reveal">
+                            <div class="rounded-[2rem] overflow-hidden shadow-2xl image-hover-zoom h-80 md:h-[32rem] relative border-4 border-white">
+                                <img src="../images/seafood-platter-poolside-cocktails.webp" alt="Lavish Seafood Platter by the Pool" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <span class="bg-white/90 backdrop-blur text-charcoal text-xs font-bold uppercase tracking-wider py-1.5 px-3 rounded-full mb-3 inline-block">Signature Dish</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 reveal reveal-delay-1">
+                            <h4 class="font-heading text-4xl font-bold text-charcoal mb-6">The Tropical Feast</h4>
+                            <p class="text-gray-600 leading-relaxed mb-8 text-lg font-light">
+                                Immerse yourself in the ultimate seaside dining experience. Our signature seafood platters feature the freshest morning catches, perfectly paired with vibrant, ice-cold tropical cocktails. Enjoy this absolute masterpiece right by the crystal-clear pool waters.
+                            </p>
+                            <a href="booking.html" class="inline-flex items-center text-sunset font-semibold hover:text-deepOrange transition-colors group">
+                                <span class="border-b-2 border-sunset pb-1">Reserve a Table</span> 
+                                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Comfort Bowls & Local Seafood -->
+                    <div class="grid lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 grid grid-cols-2 gap-6 reveal">
+                            <div class="rounded-3xl overflow-hidden shadow-xl image-hover-zoom h-64 md:h-80 border-4 border-white">
+                                <img src="../images/seafood-meal-and-iced-tea.webp" alt="Seafood with Iced Tea" class="w-full h-full object-cover">
+                            </div>
+                            <div class="rounded-3xl overflow-hidden shadow-xl image-hover-zoom h-64 md:h-80 mt-12 border-4 border-white">
+                                <img src="../images/seaside-soup-and-iced-tea.webp" alt="Seaside Soup" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 reveal reveal-delay-1">
+                            <h4 class="font-heading text-4xl font-bold text-oceanBlue mb-6">Comfort Bowls & Local Catch</h4>
+                            <p class="text-gray-600 leading-relaxed mb-6 text-lg font-light">
+                                Experience the soul of coastal dining with our comforting seaside soups and locally sourced seafood dishes. Perfectly seasoned and served with a refreshing house-blend iced tea, these meals are crafted to warm your heart after a long swim.
+                            </p>
+                            <ul class="space-y-4 text-gray-600 font-medium">
+                                <li class="flex items-center"><span class="w-8 h-8 rounded-full bg-skyBlue/40 flex items-center justify-center mr-4"><i class="fas fa-fish text-oceanBlue text-sm"></i></span> Fresh Daily Catch</li>
+                                <li class="flex items-center"><span class="w-8 h-8 rounded-full bg-skyBlue/40 flex items-center justify-center mr-4"><i class="fas fa-mug-hot text-oceanBlue text-sm"></i></span> Heartwarming Soups</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Oceanview Dining (Split Grid) -->
+                    <div class="grid lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-5 order-2 lg:order-1 reveal">
+                            <h4 class="font-heading text-4xl font-bold text-charcoal mb-6">Oceanview Lunches</h4>
+                            <p class="text-gray-600 leading-relaxed mb-6 text-lg font-light">
+                                Elevate your midday break with savory, mouth-watering rice meals. Whether you crave our tender Sesame Chicken or our flavorful savory pork dishes, every bite is complemented by the gentle ocean breeze and unobstructed views of the horizon.
+                            </p>
+                            <ul class="space-y-4 text-gray-600 mb-8 font-medium">
+                                <li class="flex items-center"><span class="w-8 h-8 rounded-full bg-golden/20 flex items-center justify-center mr-4"><i class="fas fa-utensils text-golden"></i></span> Asian-Inspired Flavors</li>
+                                <li class="flex items-center"><span class="w-8 h-8 rounded-full bg-golden/20 flex items-center justify-center mr-4"><i class="fas fa-water text-golden"></i></span> Unmatched Beachfront Views</li>
+                            </ul>
+                        </div>
+                        <div class="lg:col-span-7 order-1 lg:order-2 grid grid-cols-2 gap-6 reveal reveal-delay-1">
+                            <div class="rounded-3xl overflow-hidden shadow-xl image-hover-zoom h-64 md:h-80 mt-12 border-4 border-white">
+                                <img src="../images/sesame-chicken-rice-oceanview.webp" alt="Sesame Chicken Oceanview" class="w-full h-full object-cover">
+                            </div>
+                            <div class="rounded-3xl overflow-hidden shadow-xl image-hover-zoom h-64 md:h-80 border-4 border-white">
+                                <img src="../images/sesame-pork-rice-oceanview.webp" alt="Sesame Pork Oceanview" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Al Fresco & Casual Bites -->
+                    <div class="grid lg:grid-cols-12 gap-12 items-center bg-white p-8 md:p-12 rounded-[3rem] shadow-sm border border-gray-100 reveal">
+                        <div class="lg:col-span-6 image-hover-zoom rounded-2xl overflow-hidden shadow-lg h-72 md:h-96">
+                            <img src="../images/beachside-pizza-palm-trees.webp" alt="Beachside Pizza" class="w-full h-full object-cover object-bottom">
+                        </div>
+                        <div class="lg:col-span-6 lg:pl-8">
+                            <h4 class="font-heading text-4xl font-bold text-sunset mb-6">Al Fresco & Casual Bites</h4>
+                            <p class="text-gray-600 leading-relaxed mb-6 text-lg font-light">
+                                Sometimes, the best meals are the simplest ones shared with friends under the palm trees. Grab a freshly baked, artisanal pizza loaded with toppings, perfect for a late afternoon snack right on the sandy shores.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4: The Resort Bar -->
+                    <div class="grid lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-5 order-2 lg:order-1 reveal">
+                            <h4 class="font-heading text-4xl font-bold text-oceanBlue mb-6">The Resort Bar</h4>
+                            <p class="text-gray-600 leading-relaxed mb-8 text-lg font-light">
+                                Gather at our fully-stocked resort bar to unwind. From expertly crafted tropical cocktails to cold local beers and vibrant neon aesthetics at night, it's the perfect social hub to cap off your day.
+                            </p>
+                            <div class="flex gap-4">
+                                <span class="px-4 py-2 rounded-full border border-skyBlue bg-skyBlue/30 text-oceanBlue font-medium text-sm">Signature Cocktails</span>
+                                <span class="px-4 py-2 rounded-full border border-skyBlue bg-skyBlue/30 text-oceanBlue font-medium text-sm">Vibrant Ambiance</span>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-7 order-1 lg:order-2 grid grid-cols-2 gap-6 reveal reveal-delay-1">
+                            <div class="rounded-3xl overflow-hidden shadow-xl image-hover-zoom h-56 md:h-72 mt-12 border-4 border-white">
+                                <img src="../images/resort-bar-interior.webp" alt="Bar Interior" class="w-full h-full object-cover object-right">
+                            </div>
+                            <div class="rounded-3xl overflow-hidden shadow-xl image-hover-zoom h-56 md:h-72 border-4 border-white">
+                                <img src="../images/resort-bar-sign-at-night.webp" alt="Bar Neon Sign" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Team / Hospitality Section -->
+        <section class="py-24 bg-sandBeige/20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                    <h2 class="text-sunset font-semibold tracking-wider uppercase mb-2 flex items-center justify-center">
+                        <span class="w-8 h-0.5 bg-sunset mr-4"></span> Hospitality <span class="w-8 h-0.5 bg-sunset ml-4"></span>
+                    </h2>
+                    <h3 class="font-heading text-4xl font-bold text-charcoal">Meet the Faces Behind Your Perfect Stay</h3>
+                    <p class="mt-4 text-gray-600">Outstanding dining and unforgettable resort experiences are made possible by our dedicated, smiling team.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    <!-- Staff 1 -->
+                    <div class="rounded-2xl overflow-hidden shadow-md group reveal reveal-delay-1">
+                        <div class="h-64 md:h-80 w-full overflow-hidden image-hover-zoom">
+                            <img src="../images/front-desk-staff-portrait.webp" alt="Front Desk Staff" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="bg-white p-4 text-center border-t-2 border-golden">
+                            <h5 class="font-bold text-charcoal">Guest Services</h5>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">Front Desk</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Staff 2 -->
+                    <div class="rounded-2xl overflow-hidden shadow-md group reveal reveal-delay-2 md:mt-8">
+                        <div class="h-64 md:h-80 w-full overflow-hidden image-hover-zoom">
+                            <img src="../images/kitchen-staff-group-portrait.webp" alt="Kitchen Staff" class="w-full h-full object-cover">
+                        </div>
+                        <div class="bg-white p-4 text-center border-t-2 border-sunset">
+                            <h5 class="font-bold text-charcoal">Culinary Team</h5>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">Kitchen</p>
+                        </div>
+                    </div>
+
+                    <!-- Staff 3 -->
+                    <div class="rounded-2xl overflow-hidden shadow-md group reveal reveal-delay-3">
+                        <div class="h-64 md:h-80 w-full overflow-hidden image-hover-zoom">
+                            <img src="../images/hotel-staff-group-portrait.webp" alt="Hotel Staff" class="w-full h-full object-cover">
+                        </div>
+                        <div class="bg-white p-4 text-center border-t-2 border-oceanBlue">
+                            <h5 class="font-bold text-charcoal">Resort Operations</h5>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">Management</p>
+                        </div>
+                    </div>
+
+                    <!-- Staff 4 -->
+                    <div class="rounded-2xl overflow-hidden shadow-md group reveal reveal-delay-4 md:mt-8">
+                        <div class="h-64 md:h-80 w-full overflow-hidden image-hover-zoom">
+                            <img src="../images/outdoor-team-group-by-pool.webp" alt="Outdoor Team" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="bg-white p-4 text-center border-t-2 border-deepOrange">
+                            <h5 class="font-bold text-charcoal">Grounds & Pool</h5>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">Outdoor Team</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 relative overflow-hidden bg-oceanBlue">
+            <div class="absolute inset-0 bg-[url('../images/sunset-beachfront-dining.webp')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+            <div class="relative z-10 max-w-4xl mx-auto px-4 text-center reveal">
+                <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mb-6">Plan Your Next Meal With Us</h2>
+                <p class="text-skyBlue text-lg mb-10 max-w-2xl mx-auto font-light">
+                    From romantic dinners by the shore to vibrant gatherings by the bar, secure your table for a memorable culinary experience.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="bg-sunset hover:bg-deepOrange text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg hover:shadow-xl text-lg flex items-center justify-center transform hover:-translate-y-1">
+                        Reserve a Table <i class="fas fa-utensils ml-3"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-[#1e5c80] text-white pt-16 pb-8 border-t-4 border-sunset">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="grid md:grid-cols-3 gap-12 mb-12">
+                    <div>
+                        <a href="home.html" class="flex items-center gap-3 mb-6">
+                            <img src="../images/ORR-LOGO.webp" alt="ORR Beach Resort Logo" class="h-16 w-auto object-contain bg-white rounded-lg p-1.5 shadow-sm">
+                            <div>
+                                <div class="font-heading font-bold text-2xl tracking-wide">ORR Beach Resort</div>
+                            </div>
+                        </a>
+                        <p class="text-skyBlue/80 mb-8 leading-relaxed">A relaxing tropical escape by the sea, offering the perfect blend of modern comfort and natural beauty in Antique.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-heading text-xl font-bold mb-6 text-golden">Quick Links</h4>
+                        <ul class="space-y-3 text-skyBlue/90">
+                            <li><a href="home.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Home</a></li>
+                            <li><a href="about.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> About Us</a></li>
+                            <li><a href="accommodations.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Accommodations</a></li>
+                            <li><a href="dining.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Dining</a></li>
+                            <li><a href="amenities.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Amenities</a></li>
+                            <li><a href="gallery.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Gallery</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-heading text-xl font-bold mb-6 text-golden">Contact Info</h4>
+                        <ul class="space-y-4 text-skyBlue/90">
+                            <li class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1.5 mr-3 text-sunset"></i>
+                                Banawon, Hamtic, Antique,<br>Philippines
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-phone-alt mr-3 text-sunset"></i>
+                                +63 900 123 4567
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope mr-3 text-sunset"></i>
+                                info@orrbeachresort.com
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-skyBlue/20 pt-8 mt-8 text-center text-skyBlue/60 text-sm flex flex-col md:flex-row justify-between items-center">
+                    <p>&copy; 2026 ORR Beach Resort. All rights reserved.</p>
+                    <div class="space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealOnScroll = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+            
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script>
+
+    <!-- Page Transition Script -->
+    <script src="../JS FILE/page-transition.js"></script>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/webp" href="../images/ORR-LOGO.webp">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html { scrollbar-gutter: stable; background: #ffffff; }
+        body { background: #ffffff; }
+    </style>
+    <script>
+        document.documentElement.classList.add('page-shell-loading');
+    </script>
+    <link rel="stylesheet" href="../CSS FILE/page-transition.css">
+    <title>Amenities | ORR Beach Resort</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        golden: '#F4C542',
+                        sunset: '#F28C28',
+                        deepOrange: '#E96A1A',
+                        oceanBlue: '#2E8BC0',
+                        skyBlue: '#DFF4FF',
+                        sandBeige: '#F7E7CE',
+                        charcoal: '#333333',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(46, 139, 192, 0.4) 0%, rgba(4, 20, 31, 0.7) 100%);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        
+        /* Custom amenity card hover effect */
+        .amenity-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .amenity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            border-color: #F7E7CE; /* sandBeige */
+        }
+        .icon-wrapper {
+            transition: all 0.5s ease;
+        }
+        .amenity-card:hover .icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+            background-color: #F4C542; /* golden */
+            color: #ffffff;
+        }
+        .icon-wrapper i {
+            transition: color 0.5s ease;
+        }
+        .amenity-card:hover .icon-wrapper i {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="font-sans text-charcoal bg-white antialiased overflow-x-hidden">
+    <div class="page-shell" data-page-shell aria-hidden="true">
+        <div class="page-shell__card">
+            <div class="page-shell__brand">
+                <div class="page-shell__logo"></div>
+                <div class="page-shell__brand-copy">
+                    <div class="page-shell__line page-shell__line--title"></div>
+                    <div class="page-shell__line page-shell__line--subtitle"></div>
+                </div>
+            </div>
+            <div class="page-shell__hero">
+                <div class="page-shell__line page-shell__line--hero-lg"></div>
+                <div class="page-shell__line page-shell__line--hero-md"></div>
+                <div class="page-shell__line page-shell__line--hero-sm"></div>
+            </div>
+            <div class="page-shell__grid">
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+                <div class="page-shell__tile"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="home.html" class="flex items-center gap-3 shrink-0">
+                    <img src="../images/ORR-LOGO.webp" alt="ORR Beach Resort Logo" class="h-10 sm:h-12 w-auto object-contain">
+                    <div>
+                        <div class="font-heading font-bold text-[15px] sm:text-xl text-oceanBlue leading-tight">ORR Beach Resort</div>
+                        <div class="text-[8px] sm:text-[10px] text-sunset tracking-wider uppercase font-medium mt-0.5">Banawon, Hamtic, Antique</div>
+                    </div>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden xl:flex items-center space-x-6">
+                    <a href="home.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Home</a>
+                    <a href="about.html" class="text-charcoal hover:text-sunset font-medium transition-colors">About</a>
+                    <a href="accommodations.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Accommodations</a>
+                    <a href="dining.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Dining</a>
+                    <a href="amenities.html" class="text-sunset font-medium transition-colors border-b-2 border-sunset pb-1">Amenities</a>
+                    <a href="gallery.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Gallery</a>
+                    <a href="contact.html" class="text-charcoal hover:text-sunset font-medium transition-colors">Contact</a>
+                    <a href="booking.html" class="bg-sunset hover:bg-deepOrange text-white px-6 py-2.5 rounded-full font-semibold transition-colors shadow-sm">Book Now</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="xl:hidden flex items-center">
+                    <button class="text-charcoal hover:text-sunset focus:outline-none mobile-menu-btn">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] flex flex-col pt-24 px-6 pb-8 transform translate-x-full transition-transform duration-500 ease-in-out xl:hidden">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-charcoal hover:text-sunset p-2">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="flex flex-col space-y-6 text-2xl font-heading font-semibold text-center mt-8">
+            <a href="home.html" class="hover:text-sunset transition-colors">Home</a>
+            <a href="about.html" class="hover:text-sunset transition-colors">About</a>
+            <a href="accommodations.html" class="hover:text-sunset transition-colors">Accommodations</a>
+            <a href="dining.html" class="hover:text-sunset transition-colors">Dining</a>
+            <a href="amenities.html" class="text-sunset transition-colors">Amenities</a>
+            <a href="gallery.html" class="hover:text-sunset transition-colors">Gallery</a>
+            <a href="contact.html" class="hover:text-sunset transition-colors">Contact</a>
+        </div>
+        <div class="mt-auto flex flex-col items-center">
+            <a href="booking.html" class="bg-sunset hover:bg-deepOrange text-white px-8 py-4 rounded-full font-bold text-xl w-full text-center transition-all shadow-lg mb-6">Book Now</a>
+            <div class="flex gap-6 justify-center text-xl">
+                <a href="#" class="w-12 h-12 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-12 h-12 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-12 h-12 rounded-full bg-sandBeige/50 flex items-center justify-center text-oceanBlue hover:bg-sunset hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="text-xs text-gray-400 mt-6 capitalize">&copy; 2026 ORR Beach Resort. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- Main Content for Page Transitions -->
+    <main id="page-content" class="page-content transition-content">
+        
+        <!-- Hero Section -->
+        <header class="relative min-h-[70vh] flex items-center justify-center pt-24 pb-32 overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="../images/main-pool-daytime.webp" alt="Resort Amenities" class="w-full h-full object-cover object-center filter blur-[2px] scale-105" />
+                <div class="absolute inset-0 hero-overlay"></div>
+            </div>
+            
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto reveal">
+                <span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md text-skyBlue text-sm font-semibold tracking-widest uppercase mb-6 border border-white/30">Resort Facilities</span>
+                <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 drop-shadow-lg leading-tight">Everything You Need <br/><span class="text-golden italic font-medium">To Unwind</span></h1>
+                <p class="text-lg md:text-xl text-skyBlue/90 font-light leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+                    From refreshing dips in the pool to spectacular ocean sunsets, explore the spaces designed to make your stay truly memorable.
+                </p>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce cursor-pointer opacity-80 hover:opacity-100 transition-opacity" onclick="document.getElementById('amenities-grid').scrollIntoView({behavior: 'smooth'})">
+                <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/40">
+                    <i class="fas fa-arrow-down text-white"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Amenities Grid Section -->
+        <section id="amenities-grid" class="py-24 bg-gray-50/50 relative">
+            <!-- Decorative Background Elements -->
+            <div class="absolute top-0 right-0 -mr-20 mt-20 w-80 h-80 rounded-full bg-sunset/5 blur-3xl z-0 pointer-events-none"></div>
+            <div class="absolute bottom-40 left-0 -ml-20 w-96 h-96 rounded-full bg-oceanBlue/5 blur-3xl z-0 pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                    <h2 class="text-sunset font-semibold tracking-wider uppercase mb-2 flex items-center justify-center">
+                        <span class="w-8 h-0.5 bg-sunset mr-4"></span> Features & Experiences <span class="w-8 h-0.5 bg-sunset ml-4"></span>
+                    </h2>
+                    <h3 class="font-heading text-4xl font-bold text-charcoal">Designed For Your Comfort</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+                    
+                    <!-- Amenity 1 -->
+                    <div class="amenity-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal reveal-delay-1 group">
+                        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-skyBlue/40 flex items-center justify-center mb-6 text-oceanBlue">
+                            <i class="fas fa-swimming-pool text-3xl"></i>
+                        </div>
+                        <h4 class="font-heading text-xl font-bold text-charcoal mb-3 group-hover:text-oceanBlue transition-colors">Swimming Pool</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed">Dive into our crystal-clear lap and kiddie pools, perfect for daytime fun or late-afternoon lounging under the tropical sun.</p>
+                    </div>
+
+                    <!-- Amenity 2 -->
+                    <div class="amenity-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal reveal-delay-2 group">
+                        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-sandBeige/60 flex items-center justify-center mb-6 text-sunset">
+                            <i class="fas fa-umbrella-beach text-3xl"></i>
+                        </div>
+                        <h4 class="font-heading text-xl font-bold text-charcoal mb-3 group-hover:text-sunset transition-colors">Beach Access</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed">Enjoy direct, private access to the pristine Hamtic shoreline. Ideal for peaceful morning walks and vibrant sunset viewing.</p>
+                    </div>
+
+                    <!-- Amenity 3 -->
+                    <div class="amenity-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal reveal-delay-3 group">
+                        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center mb-6 text-charcoal">
+                            <i class="fas fa-home text-3xl"></i>
+                        </div>
+                        <h4 class="font-heading text-xl font-bold text-charcoal mb-3 group-hover:text-charcoal transition-colors">Family Cottages</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed">Spacious, beautifully designed cabanas and cottages tailored for families and groups wanting to stay together comfortably.</p>
+                    </div>
+
+                    <!-- Amenity 4 -->
+                    <div class="amenity-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal reveal-delay-4 group lg:row-span-2 lg:flex lg:flex-col lg:justify-center bg-gradient-to-br from-white to-skyBlue/10 border-skyBlue/30 shadow-skyBlue/10">
+                        <div class="icon-wrapper w-20 h-20 rounded-full bg-oceanBlue/10 flex items-center justify-center mb-8 text-oceanBlue mx-auto lg:mx-0">
+                            <i class="fas fa-snowflake text-4xl"></i>
+                        </div>
+                        <h4 class="font-heading text-2xl font-bold text-charcoal mb-4 group-hover:text-oceanBlue transition-colors text-center lg:text-left">Air-Conditioned Rooms</h4>
+                        <p class="text-gray-600 text-base leading-relaxed text-center lg:text-left">Retreat from the tropical heat into our fully air-conditioned rooms, featuring plush bedding and modern conveniences for a restful sleep.</p>
+                    </div>
+
+                    <!-- Amenity 5 -->
+                    <div class="amenity-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal reveal-delay-1 group">
+                        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-yellow-50 flex items-center justify-center mb-6 text-golden">
+                            <i class="fas fa-glass-cheers text-3xl"></i>
+                        </div>
+                        <h4 class="font-heading text-xl font-bold text-charcoal mb-3 group-hover:text-golden transition-colors">Event Space</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed">Versatile indoor and outdoor venues completely equipped to host your weddings, reunions, birthdays, and corporate retreats.</p>
+                    </div>
+
+                    <!-- Amenity 6 -->
+                    <div class="amenity-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal reveal-delay-2 group">
+                        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center mb-6 text-gray-600">
+                            <i class="fas fa-parking text-3xl"></i>
+                        </div>
+                        <h4 class="font-heading text-xl font-bold text-charcoal mb-3 group-hover:text-gray-800 transition-colors">Parking Area</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed">Safe, secure, and ample on-site parking available exclusively for our resort guests and event attendees.</p>
+                    </div>
+
+                    <!-- Amenity 7 -->
+                    <div class="amenity-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal reveal-delay-3 group">
+                        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-skyBlue/40 flex items-center justify-center mb-6 text-oceanBlue">
+                            <i class="fas fa-wifi text-3xl"></i>
+                        </div>
+                        <h4 class="font-heading text-xl font-bold text-charcoal mb-3 group-hover:text-oceanBlue transition-colors">Free Wi-Fi</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed">Stay connected with complimentary high-speed internet access available in all rooms and major public areas.</p>
+                    </div>
+
+                    <!-- Amenity 8 -->
+                    <div class="amenity-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal reveal-delay-1 group">
+                        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-sandBeige/60 flex items-center justify-center mb-6 text-sunset">
+                            <i class="fas fa-utensils text-3xl"></i>
+                        </div>
+                        <h4 class="font-heading text-xl font-bold text-charcoal mb-3 group-hover:text-sunset transition-colors">Restaurant & Dining</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed">Savor freshly prepared local delicacies and refreshing beverages at our on-site dining areas with stunning ocean views.</p>
+                    </div>
+
+                    <!-- Amenity 9 -->
+                    <div class="amenity-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal reveal-delay-2 group">
+                        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-yellow-50 flex items-center justify-center mb-6 text-golden">
+                            <i class="fas fa-camera-retro text-3xl"></i>
+                        </div>
+                        <h4 class="font-heading text-xl font-bold text-charcoal mb-3 group-hover:text-golden transition-colors">Scenic Photo Spots</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed">Capture perfect memories at our specially curated, highly photogenic corners spread beautifully across the resort grounds.</p>
+                    </div>
+
+                    <!-- Amenity 10 -->
+                    <div class="amenity-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal reveal-delay-3 group xl:col-span-2 xl:flex xl:items-center xl:gap-8 bg-gradient-to-r from-sandBeige/20 to-white">
+                        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-green-50 flex items-center justify-center mb-6 xl:mb-0 text-green-600 shrink-0">
+                            <i class="fas fa-leaf text-3xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-heading text-xl font-bold text-charcoal mb-2 group-hover:text-green-700 transition-colors">Relaxing Outdoor Spaces</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">Unwind in our lush gardens, shaded hammocks, and quiet open-air lounges. Designed specifically to help you disconnect from the rush and reconnect with nature's tranquility.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 relative overflow-hidden bg-oceanBlue">
+            <div class="absolute inset-0 bg-[url('../images/main-pool-daytime.webp')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+            <div class="relative z-10 max-w-4xl mx-auto px-4 text-center reveal">
+                <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mb-6">Ready to Experience Paradise?</h2>
+                <p class="text-skyBlue text-lg mb-10 max-w-2xl mx-auto font-light">
+                    Whether you're planning a romantic getaway, a family vacation, or a special event, ORR Beach Resort has everything you need.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="booking.html" class="bg-sunset hover:bg-deepOrange text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg hover:shadow-xl text-lg flex items-center justify-center transform hover:-translate-y-1">
+                        Book Your Stay <i class="fas fa-calendar-check ml-2"></i>
+                    </a>
+                    <a href="contact.html" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white px-8 py-4 rounded-full font-bold transition-all text-lg flex items-center justify-center">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-[#1e5c80] text-white pt-16 pb-8 border-t-4 border-sunset">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="grid md:grid-cols-3 gap-12 mb-12">
+                    <div>
+                        <a href="home.html" class="flex items-center gap-3 mb-6">
+                            <img src="../images/ORR-LOGO.webp" alt="ORR Beach Resort Logo" class="h-16 w-auto object-contain bg-white rounded-lg p-1.5 shadow-sm">
+                            <div>
+                                <div class="font-heading font-bold text-2xl tracking-wide">ORR Beach Resort</div>
+                            </div>
+                        </a>
+                        <p class="text-skyBlue/80 mb-8 leading-relaxed">A relaxing tropical escape by the sea, offering the perfect blend of modern comfort and natural beauty in Antique.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sunset transition-colors hover:shadow-lg hover:-translate-y-1 transform">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-heading text-xl font-bold mb-6 text-golden">Quick Links</h4>
+                        <ul class="space-y-3 text-skyBlue/90">
+                            <li><a href="home.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Home</a></li>
+                            <li><a href="about.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> About Us</a></li>
+                            <li><a href="accommodations.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Accommodations</a></li>
+                            <li><a href="dining.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Dining</a></li>
+                            <li><a href="amenities.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Amenities</a></li>
+                            <li><a href="gallery.html" class="hover:text-white hover:pl-2 transition-all flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-sunset"></i> Gallery</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-heading text-xl font-bold mb-6 text-golden">Contact Info</h4>
+                        <ul class="space-y-4 text-skyBlue/90">
+                            <li class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1.5 mr-3 text-sunset"></i>
+                                Banawon, Hamtic, Antique,<br>Philippines
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-phone-alt mr-3 text-sunset"></i>
+                                +63 900 123 4567
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope mr-3 text-sunset"></i>
+                                info@orrbeachresort.com
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-skyBlue/20 pt-8 mt-8 text-center text-skyBlue/60 text-sm flex flex-col md:flex-row justify-between items-center">
+                    <p>&copy; 2026 ORR Beach Resort. All rights reserved.</p>
+                    <div class="space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealOnScroll = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+            
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script>
+
+    <!-- Page Transition Script -->
+    <script src="../JS FILE/page-transition.js"></script>
+</body>
+</html>

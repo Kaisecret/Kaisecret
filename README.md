@@ -1,8 +1,4 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,45:0f172a,100:2563eb&height=240&section=header&text=Khing%20Jay%20Regala&fontSize=44&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Aspiring%20Software%20Engineer%20%7C%20Web%2C%20Desktop%20%26%20Backend%20Builder&descAlignY=58&descAlign=50" alt="Header banner" />
-</p>
-
-<p align="center">
   <img src="me.png" width="140" alt="Khing Jay Regala" />
 </p>
 
