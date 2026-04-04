@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0b1120,45:172554,100:2563eb&height=220&section=header&text=Khing%20Jay%20Regala&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Aspiring%20Software%20Engineer%20%7C%20Web%2C%20Desktop%20%26%20Backend%20Developer&descAlignY=58&descAlign=50" alt="Header banner" />
+  <img src="me.png" width=100px>
+
 </p>
 
 <p align="center">
