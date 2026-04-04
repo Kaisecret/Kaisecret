@@ -1,34 +1,57 @@
 <p align="center">
-  <img src="me.png" width=100px>
-
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,45:0f172a,100:2563eb&height=240&section=header&text=Khing%20Jay%20Regala&fontSize=44&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Aspiring%20Software%20Engineer%20%7C%20Web%2C%20Desktop%20%26%20Backend%20Builder&descAlignY=58&descAlign=50" alt="Header banner" />
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&pause=1200&color=60A5FA&center=true&vCenter=true&width=900&lines=Building+clean+and+useful+software;Exploring+web%2C+desktop%2C+and+backend+technologies;Always+learning%2C+always+improving" alt="Typing animation" />
+  <img src="me.png" width="140" alt="Khing Jay Regala" />
+</p>
+
+<h1 align="center">Khing Jay Regala</h1>
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&pause=1200&color=60A5FA&center=true&vCenter=true&width=900&lines=Building+cool+and+useful+software;Exploring+web%2C+desktop%2C+and+backend+systems;Learning+by+building+real+projects;Always+improving+one+project+at+a+time" alt="Typing animation" />
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Focused%20On-Web%20Development-0f172a?style=for-the-badge&logo=googlechrome&logoColor=38bdf8" alt="Focused on Web Development" />
-  <img src="https://img.shields.io/badge/Building-Desktop%20Projects-0f172a?style=for-the-badge&logo=windows11&logoColor=60a5fa" alt="Building Desktop Projects" />
-  <img src="https://img.shields.io/badge/Learning-Backend%20Systems-0f172a?style=for-the-badge&logo=serverfault&logoColor=93c5fd" alt="Learning Backend Systems" />
+  <img src="https://img.shields.io/github/followers/Kaisecret?style=for-the-badge&logo=github&label=FOLLOWERS&color=2563eb&labelColor=111827" alt="GitHub followers" />
+  <img src="https://img.shields.io/badge/FOCUS-WEB%20%7C%20DESKTOP%20%7C%20BACKEND-2563eb?style=for-the-badge&labelColor=111827" alt="Focus areas" />
+  <img src="https://img.shields.io/badge/GOAL-SOFTWARE%20ENGINEER-2563eb?style=for-the-badge&labelColor=111827" alt="Goal badge" />
+</p>
+
+<p align="center">
+  I actively explore different technologies from web development to desktop and backend systems, continuously improving my skills through hands-on projects, experimentation, and learning.
+</p>
+
+<p align="center">
+  Each project I build is an opportunity to optimize workflows, enhance user experience, and apply best practices in real-world scenarios.
 </p>
 
 ## About Me
 
-I am **Khing Jay Regala**, a passionate developer who actively explores different technologies across **web development, desktop applications, and backend systems**.
-
-I continuously improve my skills through **hands-on projects, experimentation, and consistent learning**. Every project I build is an opportunity to optimize workflows, enhance user experience, and apply best practices in real-world scenarios.
+I enjoy creating software that feels clean, useful, and thoughtful. For me, every project is a chance to grow, solve real problems, and build stronger habits as a developer.
 
 > "My goal is to become a skilled software engineer and continuously improve my development skills."
 
-## What Drives Me
+## What I Bring
 
-- Turning ideas into practical and user-friendly software
-- Learning new tools, frameworks, and development workflows
-- Writing cleaner, better-structured, and more maintainable code
-- Growing step by step through real projects and experimentation
+<table align="center">
+  <tr>
+    <td width="33%" valign="top" align="center">
+      <h3>Build Mindset</h3>
+      <p>I like turning ideas into practical applications with clear structure, useful features, and a better user experience.</p>
+    </td>
+    <td width="33%" valign="top" align="center">
+      <h3>Learning Style</h3>
+      <p>I learn best by building real projects, experimenting with tools, and improving things step by step through practice.</p>
+    </td>
+    <td width="33%" valign="top" align="center">
+      <h3>Current Direction</h3>
+      <p>I am growing across web, desktop, and backend development while sharpening my coding standards and problem-solving skills.</p>
+    </td>
+  </tr>
+</table>
 
-## Tech Stack
+## Toolbox
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=java,cs,python,js,html,css,tailwind,react,php,supabase,git,github,vscode,pycharm&perline=7" alt="Tech stack icons" />
@@ -40,12 +63,12 @@ I continuously improve my skills through **hands-on projects, experimentation, a
   <img src="https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="SQL" />
 </p>
 
-## Skills Overview
+## Tech Areas
 
 <table align="center">
   <tr>
     <td width="33%" valign="top">
-      <h3 align="center">Programming Languages</h3>
+      <h3 align="center">Programming</h3>
       <p align="center">
         <img src="https://img.shields.io/badge/Java-111827?style=for-the-badge&logo=openjdk&logoColor=f97316" alt="Java" />
         <img src="https://img.shields.io/badge/Python-111827?style=for-the-badge&logo=python&logoColor=60a5fa" alt="Python" />
@@ -66,7 +89,7 @@ I continuously improve my skills through **hands-on projects, experimentation, a
       </p>
     </td>
     <td width="33%" valign="top">
-      <h3 align="center">Tools & Technologies</h3>
+      <h3 align="center">Tools</h3>
       <p align="center">
         <img src="https://img.shields.io/badge/Git-111827?style=for-the-badge&logo=git&logoColor=f97316" alt="Git" />
         <img src="https://img.shields.io/badge/GitHub-111827?style=for-the-badge&logo=github&logoColor=ffffff" alt="GitHub" />
@@ -81,8 +104,22 @@ I continuously improve my skills through **hands-on projects, experimentation, a
 
 ## Development Mindset
 
-I believe growth in software development comes from **building consistently, staying curious, and learning from every project**. I enjoy creating solutions that are not only functional, but also efficient, clear, and enjoyable to use.
+I believe growth in software development comes from building consistently, staying curious, and learning from every project. I want the software I create to be functional, efficient, and enjoyable to use.
+
+## Feeding My Contribution Spirit
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:38bdf8,100:1e3a8a&height=3&section=footer" alt="Footer divider" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Kaisecret/Kaisecret/output/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Kaisecret/Kaisecret/output/github-snake.svg" />
+    <img alt="GitHub contribution snake" src="https://raw.githubusercontent.com/Kaisecret/Kaisecret/output/github-snake.svg" />
+  </picture>
+</p>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=Kaisecret&label=VISITORS&color=0ea5e9&style=for-the-badge" alt="Profile visitors" />
+</p>
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,45:0f172a,100:2563eb&height=120&section=footer" alt="Footer banner" />
 </p>
