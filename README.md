@@ -108,7 +108,6 @@ Each project I build is an opportunity to optimize workflows, enhance user exper
 ### 📈 GitHub Stats
 
 <p align="center">
-  <img src="me.png" width="60" height="80" alt="Khing Jay Regala" />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=Kaisecret&theme=tokyonight&hide_border=true&background=0D1117" alt="GitHub Streak" width="48%" />
 </p>
 
